@@ -56,8 +56,8 @@ CREATE TABLE `account`(
     department_id   TINYINT NOT NULL,
     position_id     TINYINT NOT NULL,
     create_date     DATE,
-    FOREIGN KEY (department_id) REFERENCES department(department_id),
-    FOREIGN KEY (position_id) REFERENCES `position`(position_id)
+    FOREIGN KEY (department_id) REFERENCES department(department_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (position_id) REFERENCES `position`(position_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 INSERT INTO `account`(email, user_name, full_name, department_id, position_id, create_date)
 VALUES  ('tommy.teo@gmail.com', 'tommy', 'Tommy Tèo', 1, 1, '2021-10-18'),
@@ -66,7 +66,9 @@ VALUES  ('tommy.teo@gmail.com', 'tommy', 'Tommy Tèo', 1, 1, '2021-10-18'),
         ('steve.rogers@gmail.com', 'steve', 'Steve Rogers', 4, 4, '2021-10-15'),
         ('steven.strange@gmail.com', 'drstrange', 'Steven Strange', 5, 4, '2021-10-14'),
         ('hao.doann@gmail.com', 'haodoan', 'Doãn Thị Hào', 5, 3, '2021-10-15'),
-        ('toan.nguyen@gmail.com', 'nvt9', 'Nguyễn Văn Toàn', 3, 1, '2021-10-14'),
+        ('toan.nguyen@gmail.com', 'nvt9', 'Nguyễn Văn Toàn', 3, 1, '2021-10-20'),
+        ('phuong.nguyen@gmail.com', 'ncp10', 'Nguyễn Công Phượng', 3, 1, '2021-10-20'),
+        ('hai.nguyen@gmail.com', 'qhai', 'Nguyễn Quang Hải', 3, 1, '2021-10-20'),
         ('doan.hau@gmail.com', 'dh5', 'Đoàn Văn Hậu', 2, 2, '2021-10-20');
 
 -- Table 4: Group
@@ -80,14 +82,18 @@ CREATE TABLE `group`(
     group_name      VARCHAR(50) CHAR SET utf8mb4 NOT NULL UNIQUE,
     creator_id      SMALLINT NOT NULL,
     create_date     DATE,
-    FOREIGN KEY (creator_id) REFERENCES `account`(account_id)
+    FOREIGN KEY (creator_id) REFERENCES `account`(account_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 INSERT INTO `group`(group_name, creator_id, create_date)
 VALUES  ('Railway 1', 1, '2019-12-14'),
         ('Railway 2', 2, '2019-12-13'),
         ('Railway 3', 4, '2019-12-12'),
         ('Railway 4', 3, '2019-12-21'),
-        ('Railway 5', 5, '2019-12-20');
+        ('Railway 5', 3, '2019-12-21'),
+        ('Railway 6', 6, '2019-12-21'),
+        ('Railway 7', 3, '2019-12-21'),
+        ('Railway 8', 7, '2019-12-21'),
+        ('Railway 9', 5, '2019-12-20');
 
 -- Table 5: GroupAccount
 --  GroupID: định danh của nhóm
@@ -99,14 +105,19 @@ CREATE TABLE group_account(
     account_id  SMALLINT NOT NULL, -- quan hệ nhiều nhiều
     join_date   DATE,
     PRIMARY KEY (group_id, account_id), -- double khóa chính
-    FOREIGN KEY (group_id) REFERENCES `group`(group_id),
-    FOREIGN KEY (account_id) REFERENCES `account`(account_id)
+    FOREIGN KEY (group_id) REFERENCES `group`(group_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (account_id) REFERENCES `account`(account_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 INSERT INTO group_account(group_id, account_id, join_date)
 VALUES  (1, 1, '2021-10-14'),
         (2, 2, '2021-10-13'),
         (3, 4, '2021-10-12'),
+        (3, 6, '2021-10-11'),
+        (4, 5, '2021-10-11'),
         (4, 3, '2021-10-11'),
+        (4, 8, '2021-10-11'),
+        (4, 9, '2021-10-11'),
+        (4, 10, '2021-10-11'),
         (5, 5, '2021-10-10');
 -- SELECT * FROM group_account;
 
@@ -135,6 +146,7 @@ VALUES  ('Java'),
         ('.NET'),
         ('SQL'),
         ('Postman'),
+        ('JavaScript'),
         ('Ruby');
 
 -- Table 8: Question
@@ -153,8 +165,8 @@ CREATE TABLE question(
     creator_id      SMALLINT NOT NULL,
     create_date     DATE,
     FOREIGN KEY (category_id) REFERENCES category_question(category_id),
-    FOREIGN KEY (type_id) REFERENCES type_question(type_id),
-    FOREIGN KEY (creator_id) REFERENCES `account`(account_id)
+    FOREIGN KEY (type_id) REFERENCES type_question(type_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (creator_id) REFERENCES `account`(account_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 INSERT INTO question(content, category_id, type_id, creator_id, create_date)
 VALUES  ('Java là gì', 1, 1, 1, '2021-10-19'),
@@ -162,6 +174,7 @@ VALUES  ('Java là gì', 1, 1, 1, '2021-10-19'),
         ('SQL là gì', 3, 1, 3, '2021-10-19'),
         ('Postman là gì', 4, 2, 4, '2021-10-19'),
         ('Ruby là gì', 5, 1, 5, '2021-10-19'),
+        ('JavaScript là gì', 5, 1, 5, '2021-10-19'),
         ('Câu hỏi số 6: Đáp án là gì?', 2, 1, 2, '2021-10-20');
 
 -- Table 9: Answer
@@ -179,10 +192,10 @@ CREATE TABLE answer(
 );
 INSERT INTO answer(content, question_id, is_correct)
 VALUES  ('Là ngôn ngữ lập trình', 1, TRUE),
-        ('Không là ngôn ngữ lập trình', 1, FALSE),
+        ('Không là ngôn ngữ lập trình', 2, FALSE),
         ('Là ngôn ngữ lập trình', 1, TRUE),
-        ('Không là ngôn ngữ lập trình', 1, FALSE),
-        ('Là ngôn ngữ lập trình', 1, TRUE);
+        ('Không là ngôn ngữ lập trình', 2, FALSE),
+        ('Là ngôn ngữ lập trình', 3, TRUE);
 
 -- Table 10: Exam
 --  ExamID: định danh của đề thi (auto increment)
@@ -201,8 +214,8 @@ CREATE TABLE exam(
     duration        INT NOT NULL,
     creator_id      SMALLINT NOT NULL,
     create_date     DATE,
-    FOREIGN KEY (category_id) REFERENCES category_question(category_id),
-    FOREIGN KEY (creator_id) REFERENCES `account`(account_id)
+    FOREIGN KEY (category_id) REFERENCES category_question(category_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (creator_id) REFERENCES `account`(account_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 INSERT INTO exam(`code`, title, category_id, duration, creator_id, create_date)
 VALUES  ('A1', 'Bài thi A1', 1, '15', 1, '2019-10-19'),
@@ -224,12 +237,16 @@ CREATE TABLE exam_question(
     exam_id         INT NOT NULL,
     question_id     INT NOT NULL,
     PRIMARY KEY (exam_id, question_id),
-    FOREIGN KEY (exam_id) REFERENCES exam(exam_id),
-    FOREIGN KEY (question_id) REFERENCES question(question_id)
+    FOREIGN KEY (exam_id) REFERENCES exam(exam_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES question(question_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 INSERT INTO exam_question(exam_id, question_id)
 VALUES  (1, 2),
         (2, 3),
         (3, 4),
+        (4, 6),
+        (6, 5),
         (4, 5),
+        (7, 5),
+        (9, 4),
         (5, 1);

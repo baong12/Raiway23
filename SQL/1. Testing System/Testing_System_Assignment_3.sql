@@ -69,6 +69,7 @@ DELETE
 FROM exam
 WHERE create_date < '2019-12-20';
 SELECT * FROM exam;
+SELECT * FROM exam_question;
 
 -- Question 13: Xóa tất cả các question có nội dung bắt đầu bằng từ "câu hỏi"
 DELETE

@@ -103,6 +103,7 @@ FROM (
     JOIN department d ON d.department_id = a.department_id
     JOIN `position` p ON p.position_id = a.position_id
     GROUP BY a.account_id
+    HAVING department_name = 'Quản trị'
 ) AS t1
 GROUP BY position_name;
 
@@ -116,6 +117,26 @@ LEFT JOIN type_question t ON q.type_id = t.type_id
 LEFT JOIN `account` a ON q.creator_id = a.account_id;
 
 -- Question 13: Lấy ra số lượng câu hỏi của mỗi loại tự luận hay trắc nghiệm
+SELECT t.type_name, COUNT(q.question_id) AS question_count
+FROM type_question t
+LEFT JOIN question q ON q.type_id = t.type_id
+GROUP BY q.type_id;
+
 -- Question 14:Lấy ra group không có account nào
+SELECT g.group_name, COUNT(ga.account_id) AS account_count
+FROM `group` g
+LEFT JOIN group_account ga ON g.group_id = ga.group_id
+GROUP BY g.group_id
+HAVING account_count = 0;
+
 -- Question 15: Lấy ra group không có account nào
+-- Giống câu 14?
+
 -- Question 16: Lấy ra question không có answer nào
+SELECT * FROM question;
+SELECT * FROM answer;
+SELECT q.*, COUNT(a.answer_id) AS answer_count
+FROM question q
+LEFT JOIN answer a ON a.question_id = q.question_id
+GROUP BY q.question_id
+HAVING answer_count = 0;

@@ -60,16 +60,16 @@ CREATE TABLE `account`(
     FOREIGN KEY (position_id) REFERENCES `position`(position_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 INSERT INTO `account`(email, user_name, full_name, department_id, position_id, create_date)
-VALUES  ('tommy.teo@gmail.com', 'tommy', 'Tommy Tèo', 1, 1, '2021-10-18'),
-        ('jimmy.nguyen@gmail.com', 'jimmy', 'Jimmy Nguyễn', 2, 2, '2021-10-17'),
-        ('tony.stark@gmail.com', 'tonystark', 'Tony Stark', 3, 3, '2021-10-16'),
-        ('steve.rogers@gmail.com', 'steve', 'Steve Rogers', 4, 4, '2021-10-15'),
-        ('steven.strange@gmail.com', 'drstrange', 'Steven Strange', 5, 4, '2021-10-14'),
-        ('hao.doann@gmail.com', 'haodoan', 'Doãn Thị Hào', 5, 3, '2021-10-15'),
-        ('toan.nguyen@gmail.com', 'nvt9', 'Nguyễn Văn Toàn', 3, 1, '2021-10-20'),
-        ('phuong.nguyen@gmail.com', 'ncp10', 'Nguyễn Công Phượng', 3, 1, '2021-10-20'),
-        ('hai.nguyen@gmail.com', 'qhai', 'Nguyễn Quang Hải', 3, 1, '2021-10-20'),
-        ('doan.hau@gmail.com', 'dh5', 'Đoàn Văn Hậu', 2, 2, '2021-10-20');
+VALUES  ('tommy.teo@gmail.com',         'tommy',        'Tommy Tèo',            1, 1, '2010-10-18'),
+        ('jimmy.nguyen@gmail.com',      'jimmy',        'Jimmy Nguyễn',         2, 2, '2010-12-20'),
+        ('tony.stark@gmail.com',        'tonystark',    'Tony Stark',           3, 3, '2021-10-16'),
+        ('steve.rogers@gmail.com',      'steve',        'Steve Rogers',         4, 4, '2021-10-15'),
+        ('steven.strange@gmail.com',    'drstrange',    'Steven Strange',       5, 4, '2021-10-14'),
+        ('hao.doann@gmail.com',         'haodoan',      'Doãn Thị Hào',         5, 3, '2021-10-15'),
+        ('toan.nguyen@gmail.com',       'nvt9',         'Nguyễn Văn Toàn',      3, 1, '2021-10-20'),
+        ('phuong.nguyen@gmail.com',     'ncp10',        'Nguyễn Công Phượng',   3, 1, '2021-10-20'),
+        ('hai.nguyen@gmail.com',        'qhai',         'Nguyễn Quang Hải',     3, 1, '2021-10-20'),
+        ('doan.hau@gmail.com',          'dh5',          'Đoàn Văn Hậu',         2, 2, '2021-10-20');
 
 -- Table 4: Group
 --  GroupID: định danh của nhóm (auto increment)
@@ -110,10 +110,16 @@ CREATE TABLE group_account(
 );
 INSERT INTO group_account(group_id, account_id, join_date)
 VALUES  (1, 1, '2021-10-14'),
+        (1, 2, '2021-10-13'),
+        (1, 5, '2021-10-13'),
         (2, 2, '2021-10-13'),
+        (2, 5, '2021-10-13'),
+        (2, 6, '2021-10-13'),
+        (2, 8, '2021-10-13'),
         (3, 4, '2021-10-12'),
         (3, 6, '2021-10-11'),
         (4, 5, '2021-10-11'),
+        (4, 6, '2021-10-11'),
         (4, 3, '2021-10-11'),
         (4, 8, '2021-10-11'),
         (4, 9, '2021-10-11'),

@@ -60,16 +60,16 @@ CREATE TABLE `account`(
     FOREIGN KEY (position_id) REFERENCES `position`(position_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 INSERT INTO `account`(email, user_name, full_name, department_id, position_id, create_date)
-VALUES  ('tommy.teo@gmail.com',         'tommy',        'Tommy Tèo',            1, 1, '2010-10-18'),
-        ('jimmy.nguyen@gmail.com',      'jimmy',        'Jimmy Nguyễn',         2, 2, '2010-12-20'),
-        ('tony.stark@gmail.com',        'tonystark',    'Tony Stark',           3, 3, '2021-10-16'),
-        ('steve.rogers@gmail.com',      'steve',        'Steve Rogers',         4, 4, '2021-10-15'),
-        ('steven.strange@gmail.com',    'drstrange',    'Steven Strange',       5, 4, '2021-10-14'),
-        ('hao.doann@gmail.com',         'haodoan',      'Doãn Thị Hào',         5, 3, '2021-10-15'),
-        ('toan.nguyen@gmail.com',       'nvt9',         'Nguyễn Văn Toàn',      3, 1, '2021-10-20'),
-        ('phuong.nguyen@gmail.com',     'ncp10',        'Nguyễn Công Phượng',   3, 1, '2021-10-20'),
-        ('hai.nguyen@gmail.com',        'qhai',         'Nguyễn Quang Hải',     3, 1, '2021-10-20'),
-        ('doan.hau@gmail.com',          'dh5',          'Đoàn Văn Hậu',         2, 2, '2021-10-20');
+VALUES  ('tommy.teo@gmail.com',         'tommy',        'Ngô Hoàng Sơn',        1, 1, '2010-10-18'),
+        ('jimmy.nguyen@gmail.com',      'jimmy',        'Nguyễn Thành Long',    2, 2, '2010-12-20'),
+        ('tony.stark@gmail.com',        'tonystark',    'Vũ Thái Huy',          3, 3, '2021-10-16'),
+        ('steve.rogers@gmail.com',      'steve',        'Trần Mạnh Duy',        4, 4, '2021-10-15'),
+        ('steven.strange@gmail.com',    'drstrange',    'Huỳnh Quang Ngọc',     5, 4, '2021-10-14'),
+        ('hao.doann@gmail.com',         'haodoan',      'Phạm Hồng Ngọc',       5, 3, '2021-10-15'),
+        ('toan.nguyen@gmail.com',       'nvt9',         'Trịnh Thanh Thủy',     3, 1, '2021-10-20'),
+        ('phuong.nguyen@gmail.com',     'ncp10',        'Phí Hương Giang',      3, 1, '2021-10-20'),
+        ('hai.nguyen@gmail.com',        'qhai',         'Nguyễn Anh Thư',       3, 1, '2021-10-20'),
+        ('doan.hau@gmail.com',          'dh5',          'Hồ Phương Anh',        2, 2, '2021-10-20');
 
 -- Table 4: Group
 --  GroupID: định danh của nhóm (auto increment)
@@ -165,7 +165,7 @@ VALUES  ('Java'),
 DROP TABLE IF EXISTS question;
 CREATE TABLE question(
     question_id     INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    content         VARCHAR(500) CHAR SET utf8mb4 NOT NULL,
+    content         VARCHAR(1000) CHAR SET utf8mb4 NOT NULL,
     category_id     INT NOT NULL,
     type_id         INT NOT NULL,
     creator_id      SMALLINT NOT NULL,
@@ -181,6 +181,22 @@ VALUES  ('Java là gì', 1, 1, 1, '2021-10-19'),
         ('Postman là gì', 4, 2, 4, '2021-10-19'),
         ('Ruby là gì', 5, 1, 5, '2021-10-19'),
         ('JavaScript là gì', 5, 1, 5, '2021-10-19'),
+        ('a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c 
+        a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c 
+        a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c 
+        a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c
+        a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c
+        a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c
+        a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c',
+        5, 1, 5, '2021-10-19'),
+        ('123 a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c 
+        a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c 
+        a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c 
+        a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c
+        a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c
+        a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c
+        a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c',
+        5, 1, 5, '2021-10-19'),
         ('Câu hỏi số 6: Đáp án là gì?', 2, 1, 2, '2021-10-20');
 
 -- Table 9: Answer

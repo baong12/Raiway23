@@ -28,7 +28,7 @@ HAVING COUNT(acc.account_id) > 3;
 SELECT * FROM question;
 SELECT * FROM exam_question;
 
-SELECT q.*, COUNT(eq.exam_id) AS 'Số bài thi'
+SELECT q.content, COUNT(eq.exam_id) AS 'Số bài thi'
 FROM question q
 JOIN exam_question eq ON q.question_id = eq.question_id
 GROUP BY q.question_id
@@ -41,31 +41,18 @@ HAVING COUNT(eq.exam_id) = (
     ) AS　t2
 );
 
--- SELECT q.*
--- FROM question q
--- LEFT JOIN exam_question eq ON q.question_id = eq.question_id
--- GROUP BY q.question_id
--- HAVING COUNT(eq.exam_id) = (
---     SELECT MAX(exam_count)
---     FROM (
---         SELECT COUNT(eq.exam_id) AS exam_count
---         FROM question q
---         LEFT JOIN exam_question eq ON q.question_id = eq.question_id
---         GROUP BY q.question_id
---     ) AS t1
--- );
-
 -- Question 6: Thông kê mỗi category Question được sử dụng trong bao nhiêu Question
 SELECT * FROM category_question;
 
-SELECT ca.*, COUNT(q.question_id) as question_count
+SELECT ca.category_name, COUNT(q.question_id) as question_count
 FROM category_question ca
 LEFT JOIN question q ON ca.category_id = q.category_id
 GROUP BY ca.category_id;
 
 -- Question 7: Thông kê mỗi Question được sử dụng trong bao nhiêu Exam
 SELECT * FROM exam_question;
-SELECT q.*, COUNT(eq.exam_id) as exam_count
+
+SELECT q.content, COUNT(eq.exam_id) as exam_count
 FROM question q
 LEFT JOIN exam_question eq ON q.question_id = eq.question_id
 GROUP BY q.question_id;
@@ -73,7 +60,7 @@ GROUP BY q.question_id;
 -- Question 8: Lấy ra Question có nhiều câu trả lời nhất
 SELECT * FROM answer;
 
-SELECT q.*, COUNT(a.answer_id) AS 'Số câu trả lời'
+SELECT q.content, COUNT(a.answer_id) AS 'Số câu trả lời'
 FROM question q
 JOIN answer a ON q.question_id = a.question_id
 GROUP BY a.question_id
@@ -88,7 +75,8 @@ HAVING COUNT(a.answer_id) = (
 
 -- Question 9: Thống kê số lượng account trong mỗi group
 SELECT * FROM group_account;
-SELECT g.*, COUNT(ga.account_id) as account_count
+
+SELECT g.group_name, COUNT(ga.account_id) as account_count
 FROM `group` g
 LEFT JOIN group_account ga ON g.group_id = ga.group_id
 GROUP BY g.group_id;
@@ -103,9 +91,9 @@ GROUP BY p.position_id
 HAVING COUNT(a.account_id) = (
     SELECT MIN(account_count) AS min_account
     FROM (
-        SELECT p.position_id, COUNT(account_id) AS account_count
+        SELECT p.position_id, COUNT(a.account_id) AS account_count
         FROM `position` p
-        RIGHT JOIN `account` a ON p.position_id = a.position_id
+        LEFT JOIN `account` a ON p.position_id = a.position_id
         GROUP BY p.position_id
     ) AS t1
 );
@@ -119,7 +107,7 @@ LEFT JOIN `account` a ON d.department_id = a.department_id
 LEFT JOIN `position` p ON p.position_id = a.position_id
 GROUP BY d.department_id, p.position_id;
 
--- Chưa đúng yêu cầu nhưng mà tham khảo ↓
+-- Chưa đúng yêu cầu nhưng mà tham khảo :v ↓
 SELECT tmp.department_name, GROUP_CONCAT(tmp.cnt_position) 'Danh sach vi tri'
 FROM (
     SELECT dp.*, CONCAT(COUNT(ac.position_id), ' ', p.position_name) cnt_position

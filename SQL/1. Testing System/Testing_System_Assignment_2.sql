@@ -16,7 +16,8 @@ CREATE TABLE department(
     department_name     VARCHAR(30) CHAR SET utf8mb4 NOT NULL UNIQUE
 );
 INSERT INTO department(department_name)
-VALUES  ('Wating room'),
+VALUES  
+        ('Waiting room'),
         ('Marketing'),
         ('Sales'),
         ('Quản trị'),
@@ -180,7 +181,9 @@ INSERT INTO question(content, category_id, type_id, creator_id, create_date)
 VALUES  ('Java là gì', 1, 1, 1, '2021-09-19'),
         ('.Net là gì', 2, 2, 2, '2021-10-19'),
         ('SQL là gì', 3, 1, 3, '2021-10-19'),
-        ('Postman là gì', 4, 2, 4, '2021-10-19'),
+        ('SQL là gì vậy', 3, 1, 3, '2021-10-19'),
+        ('SQL là gì thế', 3, 1, 3, '2021-10-19'),
+        ('Postman là gì', 4, 2, 4, '2020-10-19'),
         ('Ruby là gì', 5, 1, 5, '2021-10-19'),
         ('JavaScript là gì', 5, 1, 5, '2021-10-19'),
         ('a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c a b c 
@@ -242,21 +245,21 @@ CREATE TABLE exam(
     FOREIGN KEY (creator_id) REFERENCES `account`(account_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 INSERT INTO exam(`code`, title, category_id, duration, creator_id, create_date)
-VALUES  ('A1', 'Bài thi A1', 1, '15', 1, '2016-10-19'),
-        ('A2', 'Bài thi A2', 1, '30', 1, '2017-10-19'),
-        ('A3', 'Bài thi A3', 1, '30', 1, '2017-10-19'),
-        ('A4', 'Bài thi A4', 2, '30', 1, '2018-10-19'),
-        ('A5', 'Bài thi A5', 2, '30', 2, '2018-10-19'),
-        ('A6', 'Bài thi A6', 2, '30', 2, '2019-10-19'),
-        ('B2', 'Bài thi B2', 2, '30', 2, '2019-10-19'),
-        ('C3', 'Bài thi C3', 3, '45', 2, '2019-10-19'),
-        ('D4', 'Bài thi D4', 4, '60', 3, '2019-10-19'),
-        ('E5', 'Bài thi E5', 5, '75', 3, '2019-10-19'),
-        ('E6', 'Bài thi E6', 5, '75', 3, '2019-10-19'),
-        ('E7', 'Bài thi E7', 5, '75', 4, '2021-10-19'),
-        ('E8', 'Bài thi E8', 5, '75', 4, '2021-10-19'),
-        ('E9', 'Bài thi E9', 5, '75', 5, '2021-10-19'),
-        ('D5', 'Bài thi D5', 5, '75', 6, '2021-10-19');
+VALUES  ('A1', 'Bài thi A1', 1, 15, 1, '2016-10-19'),
+        ('A2', 'Bài thi A2', 1, 30, 1, '2017-10-19'),
+        ('A3', 'Bài thi A3', 1, 30, 1, '2017-10-19'),
+        ('A4', 'Bài thi A4', 2, 30, 1, '2018-10-19'),
+        ('A5', 'Bài thi A5', 2, 30, 2, '2018-10-19'),
+        ('A6', 'Bài thi A6', 2, 30, 2, '2019-10-19'),
+        ('B2', 'Bài thi B2', 2, 30, 2, '2019-10-19'),
+        ('C3', 'Bài thi C3', 3, 45, 2, '2019-10-19'),
+        ('D4', 'Bài thi D4', 4, 60, 3, '2019-10-19'),
+        ('E5', 'Bài thi E5', 5, 75, 3, '2019-10-19'),
+        ('E6', 'Bài thi E6', 5, 75, 3, '2019-10-19'),
+        ('E7', 'Bài thi E7', 5, 75, 4, '2021-10-19'),
+        ('E8', 'Bài thi E8', 5, 75, 4, '2021-10-19'),
+        ('E9', 'Bài thi E9', 5, 75, 5, '2021-10-19'),
+        ('D5', 'Bài thi D5', 5, 75, 6, '2021-10-19');
 
 -- Table 11: ExamQuestion
 --  ExamID: định danh của đề thi

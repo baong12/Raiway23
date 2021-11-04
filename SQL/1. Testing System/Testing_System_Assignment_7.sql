@@ -172,7 +172,7 @@ CREATE TRIGGER trg_insert_answer_limit
                 SET MESSAGE_TEXT = 'This question cannot have more than 4 answers.';
             END IF;
             
-            SELECT COUNT(is_correct) INTO correct_ans_count FROM answer
+            SELECT COUNT(answer_id) INTO correct_ans_count FROM answer
             WHERE question_id = NEW.question_id
                 AND is_correct = TRUE;
             
@@ -215,24 +215,20 @@ CREATE TRIGGER trg_gender_input_modify
 BEFORE INSERT ON account_copy
 FOR EACH ROW
     BEGIN
-        IF UPPER(NEW.gender) NOT IN('M', 'F', 'U') THEN
-            IF LOWER(NEW.gender) = 'nam' THEN
-                SET NEW.gender = 'M';
-            ELSEIF LOWER(NEW.gender) = 'nữ' THEN
-                SET NEW.gender = 'F';
-            ELSEIF LOWER(NEW.gender) = 'chưa xác định' THEN
-                SET NEW.gender = 'U';
---             ELSE
---                 SET NEW.gender = 'U';
-            END IF;
+        IF NEW.gender = 'nam' THEN
+            SET NEW.gender = 'M';
+        ELSEIF NEW.gender = 'nữ' THEN
+            SET NEW.gender = 'F';
+        ELSEIF NEW.gender = 'chưa xác định' THEN
+            SET NEW.gender = 'U';
         END IF;
     END$$
 DELIMITER ;
 
 INSERT INTO account_copy(email, user_name, full_name, gender, department_id, position_id, create_date)
-VALUES ('dai.vu@gmail.com', 'dai.vu', 'Vũ Văn Đại', 'Nam', 1, 1, '2021-11-01');
+VALUES ('dai.vu@gmail.com', 'dai.vu', 'Vũ Văn Đại', 'nam', 1, 1, '2021-11-01');
 INSERT INTO account_copy(email, user_name, full_name, gender, department_id, position_id, create_date)
-VALUES ('hue.nguyen@gmail.com', 'hue.nguyen', 'Nguyễn Thị Huệ', 'NỮ', 1, 1, '2021-11-01');
+VALUES ('hue.nguyen@gmail.com', 'hue.nguyen', 'Nguyễn Thị Huệ', 'nữ', 1, 1, '2021-11-01');
 INSERT INTO account_copy(email, user_name, full_name, gender, department_id, position_id, create_date)
 VALUES ('trang.do@gmail.com', 'trang.do', 'Đỗ Thu Trang', 'chưa xác định', 1, 1, '2021-11-01');
 SELECT * FROM account_copy;
@@ -244,7 +240,7 @@ CREATE TRIGGER trg_delete_exam_limit_2d_ago
 BEFORE DELETE ON exam
 FOR EACH ROW
     BEGIN
-        IF OLD.create_date >= DATE_SUB(curdate(), INTERVAL 2 DAY) THEN
+        IF OLD.create_date > DATE_SUB(curdate(), INTERVAL 2 DAY) THEN
             SIGNAL SQLSTATE '12345'
             SET MESSAGE_TEXT = 'Không thể xóa bài thi mới tạo được 2 ngày.';
         END IF;
@@ -260,13 +256,14 @@ DELETE FROM exam WHERE `code` = 'T1';
 DROP TRIGGER IF EXISTS trg_delete_question_limit;
 DELIMITER $$
 CREATE TRIGGER trg_delete_question_limit
-BEFORE DELETE ON question
+BEFORE DELETE ON question                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 FOR EACH ROW
     BEGIN
-        IF (
-            SELECT COUNT(exam_id) AS exam_count FROM exam_question
-            WHERE question_id = OLD.question_id
-        ) <> 0 THEN
+        DECLARE examCount INT;
+        SELECT COUNT(exam_id) INTO examCount -- Đếm số bài thi sử dụng câu hỏi muốn xóa
+        FROM exam_question
+        WHERE question_id = OLD.question_id;
+        IF examCount <> 0 THEN
             SIGNAL SQLSTATE '12345'
             SET MESSAGE_TEXT = 'Không thể delete câu hỏi nằm trong một hoặc nhiều bài thi.';
         END IF;
@@ -276,22 +273,25 @@ DELIMITER ;
 DROP TRIGGER IF EXISTS trg_update_question_limit;
 DELIMITER $$
 CREATE TRIGGER trg_update_question_limit
-BEFORE UPDATE ON question
+BEFORE UPDATE ON question                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 FOR EACH ROW
     BEGIN
-        IF (
-            SELECT COUNT(exam_id) AS exam_count FROM exam_question
-            WHERE question_id = OLD.question_id
-        ) <> 0 THEN
+        DECLARE examCount INT;
+        SELECT COUNT(exam_id) INTO examCount -- Đếm số bài thi sử dụng câu hỏi muốn update
+        FROM exam_question
+        WHERE question_id = OLD.question_id;
+        IF examCount <> 0 THEN
             SIGNAL SQLSTATE '12345'
             SET MESSAGE_TEXT = 'Không thể update câu hỏi nằm trong một hoặc nhiều bài thi.';
         END IF;
     END$$
 DELIMITER ;
 
-DELETE FROM question WHERE question_id = 5;
+SELECT * FROM exam_question;
+SELECT * FROM question;
+DELETE FROM question WHERE question_id = 40;
 UPDATE question
-SET content = 'Thay đổi content của câu hỏi'
+SET question_id = 40
 WHERE question_id = 4;
 
 -- Question 12: Lấy ra thông tin exam trong đó:
@@ -324,7 +324,7 @@ SELECT
     CASE
         WHEN COUNT(a.account_id) <= 5 THEN 'few'
         WHEN COUNT(a.account_id) <= 20 AND COUNT(a.account_id) > 5 THEN 'normal'
-        ELSE 'high'
+        WHEN COUNT(a.account_id) > 20 THEN 'higher'
     END AS the_number_user_amount
 FROM `group` g
 LEFT JOIN group_account a ON g.group_id = a.group_id
@@ -335,7 +335,7 @@ GROUP BY g.group_id;
 SELECT
     d.department_name,
     CASE
-        WHEN COUNT(a.account_id) = 0 THEN 'Không có user'
+        WHEN COUNT(a.account_id) = 0 THEN 'Không có User'
         ELSE COUNT(a.account_id)
     END AS 'Số lượng user'
 FROM department d

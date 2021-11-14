@@ -1,4 +1,4 @@
-package testing_system;
+package com.vti.academy;
 
 import java.util.Date;
 

@@ -1,9 +1,9 @@
-package testing_system;
+package com.vti.academy;
 
 import java.util.Date;
 
 public class Question {
-	public int questionId;
+	public int id;
 	public String content;
 	public CategoryQuestion category;
 	public TypeQuestion type;

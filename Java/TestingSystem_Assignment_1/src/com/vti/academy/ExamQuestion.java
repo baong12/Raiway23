@@ -1,4 +1,4 @@
-package testing_system;
+package com.vti.academy;
 
 public class ExamQuestion {
 	public Exam exam;

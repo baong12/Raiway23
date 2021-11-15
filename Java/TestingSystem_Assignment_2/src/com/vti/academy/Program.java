@@ -401,5 +401,12 @@ public class Program {
 		System.out.println("eq8: exam=" + eq8.exam.title + ", question=" + eq8.question.content);
 	}
 
-
+//	public static Date getDate(String dateString) throws ParseException {
+//		// Instantiating the SimpleDateFormat class
+//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//		// Parsing the given String to Date object
+//		Date date = formatter.parse(dateString);
+//
+//		return date;
+//	}
 }

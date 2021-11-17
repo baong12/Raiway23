@@ -22,12 +22,12 @@ public class Exercise1FlowControl {
 		dp3.name = "Kĩ thuật";
 
 		Department dp4 = new Department();
-		dp3.id = 4;
-		dp3.name = "Sales";
+		dp4.id = 4;
+		dp4.name = "Sales";
 
 		Department dp5 = new Department();
-		dp3.id = 5;
-		dp3.name = "Kế toán";
+		dp5.id = 5;
+		dp5.name = "Kế toán";
 
 		// Add Position objects
 		Position pos1 = new Position();
@@ -376,6 +376,22 @@ public class Exercise1FlowControl {
 		
 		System.out.println("\n- Question 15:");
 		question15();
+
+		System.out.println("\n-- Question 16:");
+		question16_10(accounts);
+		question16_11(departments);
+		question16_12(departments);
+		question16_13(accounts);
+		question16_14(accounts);
+		question16_15();
+		
+		System.out.println("\n-- Question 17:");
+		question17_10(accounts);
+		question17_11(departments);
+		question17_12(departments);
+		question17_13(accounts);
+		question17_14(accounts);
+		question17_15();
 	}
 //	IF
 //	Question 1:
@@ -584,7 +600,7 @@ public class Exercise1FlowControl {
 	public static void question14(Account[] accArray) {
 		for (int i = 0; i < accArray.length; i++) {
 			if (accArray[i].id >= 4)
-				break;
+				continue;
 			System.out.println("Thông tin account thứ " + (i + 1) + " là:");
 			System.out.println("Email: " + accArray[i].email);
 			System.out.println("Full name: " + accArray[i].fullName);
@@ -600,5 +616,159 @@ public class Exercise1FlowControl {
 			if (i % 2 == 0)
 				System.out.println(i);
 		}
+	}
+	
+//	WHILE
+//	Question 16:
+//	Làm lại các Question ở phần FOR bằng cách sử dụng WHILE kết hợp với
+//	lệnh break, continue
+	public static void question16_10(Account[] accArray) {
+		int i = 0;
+		while (i < accArray.length) {
+			System.out.println("Thông tin account thứ " + (i + 1) + " là:");
+			System.out.println("Email: " + accArray[i].email);
+			System.out.println("Full name: " + accArray[i].fullName);
+			System.out.println("Phòng ban: " + accArray[i].department.name);
+			i++;
+		}
+	}
+	
+	public static void question16_11(Department[] depArray) {
+		int i = 0;
+		while (i < depArray.length) {
+			System.out.println("Thông tin department thứ " + (i + 1) + " là:");
+			System.out.println("Id: " + depArray[i].id);
+			System.out.println("Name: " + depArray[i].name);
+			i++;
+		}
+	}
+
+	public static void question16_12(Department[] depArray) {
+		int i = 0;
+		while (i < depArray.length) {
+			if (i >= 2)
+				break;
+			System.out.println("Thông tin department thứ " + (i + 1) + " là:");
+			System.out.println("Id: " + depArray[i].id);
+			System.out.println("Name: " + depArray[i].name);
+			i++;
+		}
+	}
+	
+	public static void question16_13(Account[] accArray) {
+		int i = 0;
+		while (i < accArray.length) {
+			if (i == 1) {
+				i++;
+				continue;
+			}
+			System.out.println("Thông tin account thứ " + (i + 1) + " là:");
+			System.out.println("Email: " + accArray[i].email);
+			System.out.println("Full name: " + accArray[i].fullName);
+			System.out.println("Phòng ban: " + accArray[i].department.name);
+			i++;
+		}
+	}
+	
+	public static void question16_14(Account[] accArray) {
+		int i = 0;
+		while (i < accArray.length) {
+			if (accArray[i].id >= 4) {
+				i++;
+				continue;
+			}
+			System.out.println("Thông tin account thứ " + (i + 1) + " là:");
+			System.out.println("Email: " + accArray[i].email);
+			System.out.println("Full name: " + accArray[i].fullName);
+			System.out.println("Phòng ban: " + accArray[i].department.name);
+			i++;
+		}
+	}
+	
+	public static void question16_15() {
+		System.out.println("Các số chẵn nhỏ hơn hoặc bằng 20:");
+		int i = 0;
+		while (i <= 20) {
+			if (i % 2 == 0)
+				System.out.println(i);
+			i++;
+		}
+	}
+	
+//	DO-WHILE
+//	Question 17:
+//	Làm lại các Question ở phần FOR bằng cách sử dụng DO-WHILE kết hợp với
+//	lệnh break, continue	
+	public static void question17_10(Account[] accArray) {
+		int i = 0;
+		do {
+			System.out.println("Thông tin account thứ " + (i + 1) + " là:");
+			System.out.println("Email: " + accArray[i].email);
+			System.out.println("Full name: " + accArray[i].fullName);
+			System.out.println("Phòng ban: " + accArray[i].department.name);
+			i++;
+		} while (i < accArray.length);
+	}
+	
+	public static void question17_11(Department[] depArray) {
+		int i = 0;
+		do {
+			System.out.println("Thông tin department thứ " + (i + 1) + " là:");
+			System.out.println("Id: " + depArray[i].id);
+			System.out.println("Name: " + depArray[i].name);
+			i++;
+		} while (i < depArray.length);
+	}
+	
+	public static void question17_12(Department[] depArray) {
+		int i = 0;
+		do {
+			if (i >= 2)
+				break;
+			System.out.println("Thông tin department thứ " + (i + 1) + " là:");
+			System.out.println("Id: " + depArray[i].id);
+			System.out.println("Name: " + depArray[i].name);
+			i++;
+		} while (i < depArray.length);
+	}
+	
+	public static void question17_13(Account[] accArray) {
+		int i = 0;
+		do {
+			if (i == 1) {
+				i++;
+				continue;
+			}
+			System.out.println("Thông tin account thứ " + (i + 1) + " là:");
+			System.out.println("Email: " + accArray[i].email);
+			System.out.println("Full name: " + accArray[i].fullName);
+			System.out.println("Phòng ban: " + accArray[i].department.name);
+			i++;
+		} while (i < accArray.length);
+	}
+	
+	public static void question17_14(Account[] accArray) {
+		int i = 0;
+		do {
+			if (accArray[i].id >= 4) {
+				i++;
+				continue;
+			}
+			System.out.println("Thông tin account thứ " + (i + 1) + " là:");
+			System.out.println("Email: " + accArray[i].email);
+			System.out.println("Full name: " + accArray[i].fullName);
+			System.out.println("Phòng ban: " + accArray[i].department.name);
+			i++;
+		} while (i < accArray.length);
+	}
+	
+	public static void question17_15() {
+		System.out.println("Các số chẵn nhỏ hơn hoặc bằng 20:");
+		int i = 0;
+		do {
+			if (i % 2 == 0)
+				System.out.println(i);
+			i++;
+		} while (i <= 20);
 	}
 }

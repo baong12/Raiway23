@@ -1,7 +1,6 @@
 package com.vti.academy;
 
 import java.time.LocalDate;
-import java.time.chrono.MinguoDate;
 import java.util.Random;
 
 public class Exercise4RandomNumber {

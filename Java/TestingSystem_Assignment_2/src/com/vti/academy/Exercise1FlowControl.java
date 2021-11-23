@@ -548,7 +548,8 @@ public class Exercise1FlowControl {
 //		Full name: Nguyễn Văn B
 //		Phòng ban: Marketting
 	public static void question10(Account[] accArray) {
-		for (int i = 0; i < accArray.length; i++) {
+		int arrayLength = accArray.length;
+		for (int i = 0; i < arrayLength; i++) {
 			System.out.println("Thông tin account thứ " + (i + 1) + " là:");
 			System.out.println("Email: " + accArray[i].email);
 			System.out.println("Full name: " + accArray[i].fullName);
@@ -565,7 +566,8 @@ public class Exercise1FlowControl {
 //		Id: 2
 //		Name: Marketing
 	public static void question11(Department[] depArray) {
-		for (int i = 0; i < depArray.length; i++) {
+		int arrayLength = depArray.length;
+		for (int i = 0; i < arrayLength; i++) {
 			System.out.println("Thông tin department thứ " + (i + 1) + " là:");
 			System.out.println("Id: " + depArray[i].id);
 			System.out.println("Name: " + depArray[i].name);
@@ -585,6 +587,7 @@ public class Exercise1FlowControl {
 //	Question 13:
 //		In ra thông tin tất cả các account ngoại trừ account thứ 2
 	public static void question13(Account[] accArray) {
+
 		for (int i = 0; i < accArray.length; i++) {
 			if (i == 1)
 				continue;
@@ -598,7 +601,8 @@ public class Exercise1FlowControl {
 //	Question 14:
 //		In ra thông tin tất cả các account có id < 4
 	public static void question14(Account[] accArray) {
-		for (int i = 0; i < accArray.length; i++) {
+		int arrayLength = accArray.length;
+		for (int i = 0; i < arrayLength; i++) {
 			if (accArray[i].id >= 4)
 				continue;
 			System.out.println("Thông tin account thứ " + (i + 1) + " là:");
@@ -624,7 +628,8 @@ public class Exercise1FlowControl {
 //	lệnh break, continue
 	public static void question16_10(Account[] accArray) {
 		int i = 0;
-		while (i < accArray.length) {
+		int arrayLength = accArray.length;
+		while (i < arrayLength) {
 			System.out.println("Thông tin account thứ " + (i + 1) + " là:");
 			System.out.println("Email: " + accArray[i].email);
 			System.out.println("Full name: " + accArray[i].fullName);
@@ -635,7 +640,8 @@ public class Exercise1FlowControl {
 	
 	public static void question16_11(Department[] depArray) {
 		int i = 0;
-		while (i < depArray.length) {
+		int arrayLength = depArray.length;
+		while (i < arrayLength) {
 			System.out.println("Thông tin department thứ " + (i + 1) + " là:");
 			System.out.println("Id: " + depArray[i].id);
 			System.out.println("Name: " + depArray[i].name);
@@ -645,7 +651,8 @@ public class Exercise1FlowControl {
 
 	public static void question16_12(Department[] depArray) {
 		int i = 0;
-		while (i < depArray.length) {
+		int arrayLength = depArray.length;
+		while (i < arrayLength) {
 			if (i >= 2)
 				break;
 			System.out.println("Thông tin department thứ " + (i + 1) + " là:");
@@ -657,7 +664,8 @@ public class Exercise1FlowControl {
 	
 	public static void question16_13(Account[] accArray) {
 		int i = 0;
-		while (i < accArray.length) {
+		int arrayLength = accArray.length;
+		while (i < arrayLength) {
 			if (i == 1) {
 				i++;
 				continue;
@@ -672,7 +680,8 @@ public class Exercise1FlowControl {
 	
 	public static void question16_14(Account[] accArray) {
 		int i = 0;
-		while (i < accArray.length) {
+		int arrayLength = accArray.length;
+		while (i < arrayLength) {
 			if (accArray[i].id >= 4) {
 				i++;
 				continue;
@@ -701,27 +710,30 @@ public class Exercise1FlowControl {
 //	lệnh break, continue	
 	public static void question17_10(Account[] accArray) {
 		int i = 0;
+		int arrayLength = accArray.length;
 		do {
 			System.out.println("Thông tin account thứ " + (i + 1) + " là:");
 			System.out.println("Email: " + accArray[i].email);
 			System.out.println("Full name: " + accArray[i].fullName);
 			System.out.println("Phòng ban: " + accArray[i].department.name);
 			i++;
-		} while (i < accArray.length);
+		} while (i < arrayLength);
 	}
 	
 	public static void question17_11(Department[] depArray) {
 		int i = 0;
+		int arrayLength = depArray.length;
 		do {
 			System.out.println("Thông tin department thứ " + (i + 1) + " là:");
 			System.out.println("Id: " + depArray[i].id);
 			System.out.println("Name: " + depArray[i].name);
 			i++;
-		} while (i < depArray.length);
+		} while (i < arrayLength);
 	}
 	
 	public static void question17_12(Department[] depArray) {
 		int i = 0;
+		int arrayLength = depArray.length;
 		do {
 			if (i >= 2)
 				break;
@@ -729,11 +741,12 @@ public class Exercise1FlowControl {
 			System.out.println("Id: " + depArray[i].id);
 			System.out.println("Name: " + depArray[i].name);
 			i++;
-		} while (i < depArray.length);
+		} while (i < arrayLength);
 	}
 	
 	public static void question17_13(Account[] accArray) {
 		int i = 0;
+		int arrayLength = accArray.length;
 		do {
 			if (i == 1) {
 				i++;
@@ -744,11 +757,12 @@ public class Exercise1FlowControl {
 			System.out.println("Full name: " + accArray[i].fullName);
 			System.out.println("Phòng ban: " + accArray[i].department.name);
 			i++;
-		} while (i < accArray.length);
+		} while (i < arrayLength);
 	}
 	
 	public static void question17_14(Account[] accArray) {
 		int i = 0;
+		int arrayLength = accArray.length;
 		do {
 			if (accArray[i].id >= 4) {
 				i++;
@@ -759,7 +773,11 @@ public class Exercise1FlowControl {
 			System.out.println("Full name: " + accArray[i].fullName);
 			System.out.println("Phòng ban: " + accArray[i].department.name);
 			i++;
-		} while (i < accArray.length);
+		} while (i < arrayLength);
+		
+		System.out.println("Question 16:\r\n"
+				+ "Làm lại các Question ở phần FOR bằng cách sử dụng WHILE kết hợp với\r\n"
+				+ "lệnh break, continue");
 	}
 	
 	public static void question17_15() {

@@ -2,9 +2,12 @@ package com.vti.academy;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
+
+import com.vti.academy.enums.PositionName;
 
 public class Exercise5InputFormConsole {
 	private static ExerciseCommon com = new ExerciseCommon();
@@ -18,45 +21,46 @@ public class Exercise5InputFormConsole {
 		scn = new Scanner(System.in);
 
 		System.out.println("\n-- Question 1:");
-//		Question1();
+//		question1();
 
 		System.out.println("\n-- Question 2:");
-//		Question2();
+//		question2();
 
 		System.out.println("\n-- Question 3:");
-//		Question3();
+//		question3();
 
 		System.out.println("\n-- Question 4:");
-//		Question4();
+//		question4();
 
 		System.out.println("\n-- Question 5:");
-//		Question5();
+//		question5();
 
 		System.out.println("\n-- Question 6:");
-//		Question6();
+//		question6();
 
 		System.out.println("\n-- Question 7:");
-//		Question7();
-//		Question7Cach2();
+//		question7();
+//		question7Cach2();
 
 		System.out.println("\n-- Question 8:");
-//		Question8();
+//		question8();
 
 		System.out.println("\n-- Question 9:");
-//		Question9();
+		question9();
 
 		System.out.println("\n-- Question 10:");
-//		Question10();
+//		question10();
 
 		System.out.println("\n-- Question 11:");
-		Question11();
+//		question11();
 
 		scn.close();
 	}
 
 //	Question 1:
 //	Viết lệnh cho phép người dùng nhập 3 số nguyên vào chương trình
-	public static void Question1() {
+	public static void question1() {
+		Scanner scn = new Scanner(System.in);
 		System.out.println("Nhập 1 số nguyên: ");
 		int num1 = scn.nextInt();
 		System.out.println("Nhập 1 số nguyên: ");
@@ -66,38 +70,45 @@ public class Exercise5InputFormConsole {
 
 		System.out.println("3 số nguyên bạn vừa nhập:");
 		System.out.printf("%d, %d, %d %n", num1, num2, num3);
+		scn.close();
 	}
 
 //	Question 2:
 //	Viết lệnh cho phép người dùng nhập 2 số thực vào chương trình
-	public static void Question2() {
+	public static void question2() {
+		Scanner scn = new Scanner(System.in);
 		System.out.println("Nhập 1 số thực: ");
 		float num1 = scn.nextFloat();
 		System.out.println("Nhập 1 số thực: ");
 		float num2 = scn.nextFloat();
 
-		System.out.println("3 số nguyên bạn vừa nhập:");
+		System.out.println("2 số thực bạn vừa nhập:");
 		System.out.printf("%f, %f %n", num1, num2);
+		scn.close();
 	}
 
 //	Question 3:
 //	Viết lệnh cho phép người dùng nhập họ và tên
-	public static void Question3() {
+	public static void question3() {
+		Scanner scn = new Scanner(System.in);
 		System.out.println("Nhập họ và tên: ");
 		String fullName = scn.nextLine();
 		System.out.println("Họ và tên: " + fullName);
+		scn.close();
 	}
 
 //	Question 4:
 //	Viết lệnh cho phép người dùng nhập vào ngày sinh nhật của họ
-	public static void Question4() throws ParseException {
-		System.out.println("Nhập ngày sinh nhật: ");
+	public static void question4() throws ParseException {
+		Scanner scn = new Scanner(System.in);
+		System.out.println("Nhập ngày sinh nhật: (yyyy-MM-dd)");
 		String dateInput = scn.next();
 		String pattern = "yyyy-MM-dd";
 		SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
 		Date date = dateFormat.parse(dateInput);
 
 		System.out.println("Input: " + date);
+		scn.close();
 	}
 
 //	Question 5:
@@ -105,7 +116,8 @@ public class Exercise5InputFormConsole {
 //	Đối với property Position, Người dùng nhập vào 1 2 3 4 5 và vào
 //	chương trình sẽ chuyển thành Position.Dev, Position.Test,
 //	Position.ScrumMaster, Position.PM
-	public static void Question5() {
+	public static void question5() {
+		Scanner scn = new Scanner(System.in);
 		System.out.println("Nhập thông tin account mới.");
 		System.out.print("Email: ");
 		String email = scn.nextLine();
@@ -114,7 +126,7 @@ public class Exercise5InputFormConsole {
 		System.out.print("Họ và tên: ");
 		String fullName = scn.nextLine();
 		System.out.print("ID phòng ban: ");
-		int depId = scn.nextInt();
+		String depName = scn.nextLine();
 		System.out.print("ID vị trí: ");
 		int posId = scn.nextInt();
 
@@ -123,21 +135,16 @@ public class Exercise5InputFormConsole {
 		acc.username = username;
 		acc.fullName = fullName;
 
-		acc.department = com.dp1;
-		for (Department dep : depList) {
-			if (dep.id == depId) {
-				acc.department = dep;
-				break;
-			}
-		}
+		Department dep = new Department();
+		dep.id = 0;
+		dep.name = depName;
+		acc.department = dep;
 
-		acc.position = com.pos1;
-		for (Position pos : posList) {
-			if (pos.id == posId) {
-				acc.position = pos;
-				break;
-			}
-		}
+		posId = posId >= 1 && posId <= 4 ? posId : 1;
+		Position pos = new Position();
+		pos.id = 0;
+		pos.name = PositionName.values()[posId - 1];
+		acc.position = pos;
 
 		acc.createDate = new Date();
 
@@ -148,11 +155,13 @@ public class Exercise5InputFormConsole {
 		System.out.println("department: " + acc.department.name);
 		System.out.println("position: " + acc.position.name.getPositionName());
 		System.out.println("createDate: " + acc.createDate);
+
+		scn.close();
 	}
 
 //	Question 6:
 //	Viết lệnh cho phép người dùng tạo department (viết thành method)
-	public static void Question6() {
+	public static void question6() {
 		System.out.println("Tạo phòng ban mới.");
 		System.out.print("Tên phòng ban: ");
 		String name = scn.nextLine();
@@ -165,28 +174,12 @@ public class Exercise5InputFormConsole {
 
 //	Question 7:
 //	Nhập số chẵn từ console
-	public static void Question7() {
-		int num = -1;
-		boolean isEvenNumber = false;
-		while (isEvenNumber == false) {
-			System.out.print("Nhập một sỗ chẵn: ");
-			num = scn.nextInt();
-			isEvenNumber = num % 2 == 0;
-			if (isEvenNumber == false) {
-				System.out.println("Có chắc số vừa rồi là chẵn không vậy? :/");
-			}
-		}
-
-		System.out.println("Sô chẵn vừa nhập là: " + num);
-	}
-
-	public static void Question7Cach2() {
+	public static void question7() {
 		System.out.print("Nhập một sỗ chẵn: ");
 		int num = scn.nextInt();
 
 		if (num % 2 != 0) {
 			System.out.println("Có chắc số vừa rồi là chẵn không vậy? :/");
-			Question7Cach2();
 		} else {
 			System.out.println("Sô chẵn vừa nhập là: " + num);
 		}
@@ -203,7 +196,8 @@ public class Exercise5InputFormConsole {
 //	department
 //	Nếu người dùng nhập vào số khác thì in ra text "Mời bạn nhập
 //	lại" và quay trở lại bước 1
-	public static void Question8() {
+	public static void question8() {
+		Scanner scn = new Scanner(System.in);
 		System.out.println("Mời bạn nhập vào chức năng muốn sử dụng:");
 		System.out.println("1. Tạo account");
 		System.out.println("2. Tạo department");
@@ -211,16 +205,17 @@ public class Exercise5InputFormConsole {
 
 		switch (choice) {
 		case 1:
-			Question5();
+			question5();
 			break;
 		case 2:
-			Question6();
+			question6();
 			break;
 		default:
 			System.out.println("Mời bạn nhập lại.");
-			Question8();
+			question8();
 			break;
 		}
+		scn.close();
 	}
 
 //	Question 9:
@@ -236,7 +231,7 @@ public class Exercise5InputFormConsole {
 //	Bước 5:
 //	Dựa vào username và tên của group người dùng vừa chọn, hãy
 //	thêm account vào group đó .
-	public static void Question9() {
+	public static void question9() {
 		boolean isUserFound = false;
 		boolean isGroupFound = false;
 
@@ -255,25 +250,33 @@ public class Exercise5InputFormConsole {
 		System.out.println("Nhập tên group: ");
 		String grName = scn.nextLine();
 
+		Group grAdd = null;
+		for (Group gr : grList) {
+			if (gr.name.equals(grName)) {
+				isUserFound = true;
+				grAdd = gr;
+				break;
+			}
+		}
+
 		for (Account acc : accList) {
 			if (acc.username.equals(username)) {
 				isUserFound = true;
-				for (Group gr : grList) {
-					if (gr.name.equals(grName)) {
-						isGroupFound = true;
-						acc.groups = new Group[] { gr };
-						System.out.printf("Thêm thành công '%s' vào nhóm '%s' %n", acc.username, gr.name);
-						break;
-					}
+				if (acc.groups != null) {
+					acc.groups = Arrays.copyOf(acc.groups, acc.groups.length + 1);
+					acc.groups[acc.groups.length - 1] = grAdd;
+				} else {
+					acc.groups = new Group[] { grAdd };
 				}
+				System.out.printf("Thêm thành công '%s' vào nhóm '%s' %n", acc.username, grAdd.name);
+				break;
 			}
 		}
 		if (!isUserFound) {
 			System.out.println("User không tồn tại");
-		} else {
-			if (!isGroupFound) {
-				System.out.println("Group không tồn tại");
-			}
+		}
+		if (!isGroupFound) {
+			System.out.println("Group không tồn tại");
 		}
 	}
 
@@ -287,7 +290,7 @@ public class Exercise5InputFormConsole {
 //	không?". Nếu người dùng chọn "Có" thì quay lại bước 1, nếu người
 //	dùng chọn "Không" thì kết thúc chương trình (sử dụng lệnh return để
 //	kết thúc chương trình)
-	public static void Question10() {
+	public static void question10() {
 		System.out.println("Mời bạn nhập vào chức năng muốn sử dụng:");
 		System.out.println("1. Tạo account");
 		System.out.println("2. Tạo department");
@@ -300,17 +303,17 @@ public class Exercise5InputFormConsole {
 
 		switch (choice) {
 		case 1:
-			Question5();
+			question5();
 			break;
 		case 2:
-			Question6();
+			question6();
 			break;
 		case 3:
-			Question9();
+			question9();
 			break;
 		default:
 			System.out.println("Mời bạn nhập lại.");
-			Question10();
+			question10();
 			break;
 		}
 
@@ -318,7 +321,7 @@ public class Exercise5InputFormConsole {
 		System.out.println("1. Có; 2. Không");
 		int nextChoice = scn.nextInt();
 		if (nextChoice == 1) {
-			Question10();
+			question10();
 		}
 	}
 
@@ -335,7 +338,7 @@ public class Exercise5InputFormConsole {
 //	Bước 4:
 //	Thêm account vào group chương trình vừa chọn ngẫu
 //	nhiên
-	public static void Question11() {
+	public static void question11() {
 		System.out.println("Mời bạn nhập vào chức năng muốn sử dụng:");
 		System.out.println("1. Tạo account");
 		System.out.println("2. Tạo department");
@@ -349,20 +352,20 @@ public class Exercise5InputFormConsole {
 
 		switch (choice) {
 		case 1:
-			Question5();
+			question5();
 			break;
 		case 2:
-			Question6();
+			question6();
 			break;
 		case 3:
-			Question9();
+			question9();
 			break;
 		case 4:
-			Question9_rand();
+			question9_rand();
 			break;
 		default:
 			System.out.println("Mời bạn nhập lại.");
-			Question11();
+			question11();
 			break;
 		}
 
@@ -370,11 +373,11 @@ public class Exercise5InputFormConsole {
 		System.out.println("1. Có; 2. Không");
 		int nextChoice = scn.nextInt();
 		if (nextChoice == 1) {
-			Question11();
+			question11();
 		}
 	}
 
-	public static void Question9_rand() {
+	public static void question9_rand() {
 		boolean isUserFound = false;
 
 		System.out.println("Thêm group vào account.");
@@ -392,7 +395,12 @@ public class Exercise5InputFormConsole {
 				Random rand = new Random();
 				int randInt = rand.nextInt(grList.length);
 				Group gr = grList[randInt];
-				acc.groups = new Group[] { gr };
+				if (acc.groups != null) {
+					acc.groups = Arrays.copyOf(acc.groups, acc.groups.length + 1);
+					acc.groups[acc.groups.length - 1] = gr;
+				} else {
+					acc.groups = new Group[] { gr };
+				}
 				System.out.printf("Thêm thành công '%s' vào nhóm '%s' %n", acc.username, gr.name);
 				break;
 			}

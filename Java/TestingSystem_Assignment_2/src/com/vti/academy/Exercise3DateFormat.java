@@ -9,25 +9,25 @@ public class Exercise3DateFormat {
 		ExerciseCommon com = new ExerciseCommon();
 		
 		System.out.println("\n-- Question 1:");
-		Question1(com.ex1);
+		question1(com.ex1);
 
 		System.out.println("\n-- Question 2:");
-		Question2(com.ex1);
+		question2(com.ex1);
 
 		System.out.println("\n-- Question 3:");
-		Question3(com.ex1);
+		question3(com.ex1);
 
 		System.out.println("\n-- Question 4:");
-		Question4(com.ex1);
+		question4(com.ex1);
 
 		System.out.println("\n-- Question 5:");
-		Question5(com.ex1);
+		question5(com.ex1);
 	}
 
 //	Question 1:
 //	In ra thông tin Exam thứ 1 và property create date sẽ được format theo định
 //	dạng vietnamese
-	public static void Question1(Exam ex) {
+	public static void question1(Exam ex) {
 		System.out.println("id: " + ex.id);
 		System.out.println("code: " + ex.code);
 		System.out.println("title: " + ex.title);
@@ -44,7 +44,7 @@ public class Exercise3DateFormat {
 //	Question 2:
 //	In ra thông tin: Exam đã tạo ngày nào theo định dạng
 //	Năm – tháng – ngày – giờ – phút – giây	
-	public static void Question2(Exam ex) {
+	public static void question2(Exam ex) {
 		String pattern = "yyyy-MM-dd HH:mm:ss";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(ex.createDate);
@@ -53,7 +53,7 @@ public class Exercise3DateFormat {
 
 //	Question 3:
 //	Chỉ in ra năm của create date property trong Question 2
-	public static void Question3(Exam ex) {
+	public static void question3(Exam ex) {
 		String pattern = "yyyy";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(ex.createDate);
@@ -62,7 +62,7 @@ public class Exercise3DateFormat {
 
 //	Question 4:
 //	Chỉ in ra tháng và năm của create date property trong Question 2
-	public static void Question4(Exam ex) {
+	public static void question4(Exam ex) {
 		String pattern = "MM-yyyy";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(ex.createDate);
@@ -71,7 +71,7 @@ public class Exercise3DateFormat {
 
 //	Question 5:
 //	Chỉ in ra "MM-DD" của create date trong Question 2
-	public static void Question5(Exam ex) {
+	public static void question5(Exam ex) {
 		String pattern = "MM-DD";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(ex.createDate);

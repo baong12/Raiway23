@@ -6,18 +6,18 @@ public class Exercise6Method {
 
 	public static void main(String[] args) {
 		System.out.println("\n-- Question 1:");
-		Question1();
+		question1();
 
 		System.out.println("\n-- Question 1:");
-		Question2();
+		question2();
 
 		System.out.println("\n-- Question 1:");
-		Question3();
+		question3();
 	}
 
 //	Question 1:
 //	Tạo method để in ra các số chẵn nguyên dương nhỏ hơn 10
-	public static void Question1() {
+	public static void question1() {
 		System.out.println("In ra các số chẵn nguyên dương nhỏ hơn 10");
 		for (int i = 0; i < 10; i++) {
 			if (i % 2 == 0) {
@@ -28,7 +28,7 @@ public class Exercise6Method {
 
 //	Question 2:
 //	Tạo method để in thông tin các account
-	public static void Question2() {
+	public static void question2() {
 		for (Account acc : accList) {
 			System.out.println("Thông tin account " + acc);
 			System.out.println("id: " + acc.id);
@@ -44,7 +44,7 @@ public class Exercise6Method {
 
 //	Question 3:
 //	Tạo method để in ra các số nguyên dương nhỏ hơn 10
-	public static void Question3() {
+	public static void question3() {
 		System.out.println("In ra các số nguyên dương nhỏ hơn 10");
 		for (int i = 0; i < 10; i++) {
 			System.out.println(i);

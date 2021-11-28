@@ -1,6 +1,7 @@
-package com.vti.academy;
-import java.util.Iterator;
+package com.vti.backend;
 import java.util.Scanner;
+
+import com.vti.entity.Group;
 
 public class Exercise4_String {
 	private static Scanner scanner;
@@ -10,14 +11,17 @@ public class Exercise4_String {
 		scanner = new Scanner(System.in);
 		
 		Group gr1 = new Group();
-		gr1.name = "Java cơ bản";
+		gr1.setName("Java cơ bản");
 		Group gr2 = new Group();
-		gr2.name = "Java nâng cao";
+		gr2.setName("Java nâng cao");
 		Group gr3 = new Group();
-		gr3.name = "SQL";
+		gr3.setName("SQL");
 		Group gr4 = new Group();
-		gr4.name = "Full stackoverflow";
-		groups = new Group[] { gr1, gr2, gr3, gr4 };
+		gr4.setName("Full stackoverflow");
+		Group gr5 = new Group();
+		gr5.setName("Java");
+		
+		groups = new Group[] { gr1, gr2, gr3, gr4, gr5 };
 		
 //		question1();
 //		question2();
@@ -25,7 +29,7 @@ public class Exercise4_String {
 //		question4();
 //		question5();
 //		question6();
-//		question7();
+		question7();
 //		question8();
 //		question9();
 //		question10();
@@ -34,7 +38,7 @@ public class Exercise4_String {
 //		question13();
 //		question14();
 //		question15();
-		question16();
+//		question16();
 		scanner.close();
 	}
 	
@@ -81,26 +85,35 @@ public class Exercise4_String {
 //	viết hoa chữ cái đầu thì viết hoa lên
 	public static void question3() {
 		System.out.println("\n-- Question 3:");
-		System.out.println("Nhập họ và tên:");
+		System.out.println("Nhập tên:");
 		String input = scanner.nextLine().trim();
-		char[] charArr = input.toCharArray();
 		
+//		String output = "";
+//		boolean isNextUpper = true;
+//		for (int i = 0; i < input.length(); i++) {
+//			char curChar = input.charAt(i);
+//			if (isNextUpper) {
+//				output += String.valueOf(curChar).toUpperCase();
+//				isNextUpper = false;
+//			} else {
+//				output += String.valueOf(curChar).toLowerCase();
+//			}
+//			if (curChar == ' ') {
+//				isNextUpper = true;
+//			}
+//		}
+		
+		String firstChar = input.substring(0, 1);
+		String rest = input.substring(1);
 		String output = "";
-		boolean isNextUpper = true;
-		for (int i = 0; i < charArr.length; i++) {
-			char curChar = charArr[i];
-			if (isNextUpper) {
-				output += String.valueOf(curChar).toUpperCase();
-				isNextUpper = false;
-			} else {
-				output += String.valueOf(curChar).toLowerCase();
-			}
-			if (curChar == ' ') {
-				isNextUpper = true;
-			}
+		
+		if (!firstChar.equals(firstChar.toLowerCase())) {
+			output += firstChar.toUpperCase() + rest;
+		} else {
+			output += firstChar + rest;
 		}
 		
-		System.out.println("Họ và tên bạn vừa nhập: \"" + output + "\"");
+		System.out.println("Tên bạn vừa nhập: \"" + output + "\"");
 	}
 	
 //	Question 4:
@@ -112,14 +125,13 @@ public class Exercise4_String {
 //	"Ký tự thứ 1 là: M"
 	public static void question4() {
 		System.out.println("\n-- Question 4:");
-		System.out.println("Nhập họ và tên:");
-		String input = scanner.nextLine().trim();
-		char[] charArr = input.toCharArray();
+		System.out.println("Nhập tên:");
+		String input = scanner.nextLine().trim().toUpperCase();
 		
-		for (int i = 0; i < charArr.length; i++) {
-			char curChar = Character.toUpperCase(charArr[i]);
+		for (int i = 0; i < input.length(); i++) {
+			char curChar = input.charAt(i);
 			if (curChar != ' ') {
-				System.out.println("Ký tự thứ " + i + " là: " + curChar);
+				System.out.println("Ký tự thứ " + (i + 1) + " là: " + curChar);
 			}
 		}
 	}
@@ -149,7 +161,7 @@ public class Exercise4_String {
 		System.out.println("\n-- Question 6:");
 		System.out.println("Nhập họ và tên đầy đủ (bao gồm họ, tên đệm, và tên):");
 		String input = scanner.nextLine().trim();
-		String[] words = input.split(" ");
+		String[] words = input.split(" ", 3);
 		words = removeNullStrings(words);
 		
 		System.out.println("Họ là: " + words[0]);
@@ -181,23 +193,32 @@ public class Exercise4_String {
 //	VD: Nếu người dùng nhập vào " nguyễn văn nam " thì sẽ
 //	chuẩn hóa thành "Nguyễn Văn Nam"
 	public static void question7() {
-		System.out.println("\n-- Question 7: (same as question 3)");
+		System.out.println("\n-- Question 7:");
 		System.out.println("Nhập họ và tên:");
 		String input = scanner.nextLine().trim();
-		char[] charArr = input.toCharArray();
 		
 		String output = "";
-		boolean isNextUpper = true;
-		for (int i = 0; i < charArr.length; i++) {
-			char curChar = charArr[i];
-			if (isNextUpper) {
-				output += String.valueOf(curChar).toUpperCase();
-				isNextUpper = false;
-			} else {
-				output += String.valueOf(curChar).toLowerCase();
-			}
-			if (curChar == ' ') {
-				isNextUpper = true;
+//		boolean isNextUpper = true;
+//		for (int i = 0; i < input.length(); i++) {
+//			String curChar = input.substring(i, 1);
+//			if (isNextUpper) {
+//				output += curChar.toUpperCase();
+//				isNextUpper = false;
+//			} else {
+//				output += curChar.toLowerCase();
+//			}
+//			if (curChar == " ") {
+//				isNextUpper = true;
+//			}
+//		}
+		
+		String[] words = input.split("\s+");
+		for (String word : words) {
+			String firstChar = word.substring(0, 1).toUpperCase();
+			String rest = word.substring(1);
+			output += firstChar + rest;
+			if (word != words[words.length - 1]) {
+				output += " ";
 			}
 		}
 		
@@ -210,8 +231,8 @@ public class Exercise4_String {
 		System.out.println("\n-- Question 8:");
 		System.out.println("In ra tất cả các group có chứa chữ \"Java\"");
 		for (Group group : groups) {
-			if (group.name.contains("Java")) {
-				System.out.println(group.name);
+			if (group.getName().contains("Java")) {
+				System.out.println(group.getName());
 			}
 		}
 	}
@@ -222,8 +243,8 @@ public class Exercise4_String {
 		System.out.println("\n-- Question 9:");
 		System.out.println("In ra tất cả các group \"Java\"");
 		for (Group group : groups) {
-			if (group.name.equals("Java")) {
-				System.out.println(group.name);
+			if (group.getName().equals("Java")) {
+				System.out.println(group.getName());
 			}
 		}
 	}

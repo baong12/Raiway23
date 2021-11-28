@@ -1,4 +1,4 @@
-package com.vti.academy;
+package com.vti.backend;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -6,20 +6,13 @@ import java.util.Scanner;
 public class Exercise1_DatatypeCasting {
 	private static Random rand = new Random();
 
-	public static void main(String[] args) {
-		question1();
-		question2();
-		question3();
-		question4();
-	}
-
 //	Question 1:
 //	Khai báo 2 số lương có kiểu dữ liệu là float.
 //	Khởi tạo Lương của Account 1 là 5240.5 $
 //	Khởi tạo Lương của Account 2 là 10970.055$
 //	Khai báo 1 số int để làm tròn Lương của Account 1 và in số int đó ra
 //	Khai báo 1 số int để làm tròn Lương của Account 2 và in số int đó ra
-	public static void question1() {
+	public void question1() {
 		System.out.println("\n-- Question 1:");
 		float salary1 = 5240.5f;
 		float salary2 = 10970.055f;

@@ -1,6 +1,8 @@
-package com.vti.academy;
+package com.vti.backend;
 
 import java.util.Date;
+
+import com.vti.entity.Account;
 
 public class Exercise2_DefaultValue {
 	public static void main(String[] args) {
@@ -19,17 +21,17 @@ public class Exercise2_DefaultValue {
 		int length = accList.length;
 		for (int i = 0; i < length; i++) {
 			accList[i] = new Account();
-			accList[i].email = "Email " + (i + 1);
-			accList[i].username = "User name " + (i + 1);
-			accList[i].fullName = "Full name " + (i + 1);
-			accList[i].createDate = new Date();
+			accList[i].setEmail("Email " + (i + 1));
+			accList[i].setUsername("User name " + (i + 1));
+			accList[i].setFullName("Full name " + (i + 1));
+			accList[i].setCreateDate(new Date());
 		}
 		
 		for (Account acc : accList) {
-			System.out.println(acc.email);
-			System.out.println(acc.username);
-			System.out.println(acc.fullName);
-			System.out.println(acc.createDate);
+			System.out.println(acc.getEmail());
+			System.out.println(acc.getUsername());
+			System.out.println(acc.getFullName());
+			System.out.println(acc.getCreateDate());
 		}
 	}
 }

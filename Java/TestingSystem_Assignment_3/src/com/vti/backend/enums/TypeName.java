@@ -1,4 +1,4 @@
-package com.vti.academy.enums;
+package com.vti.backend.enums;
 
 public enum TypeName {
 	ESSAY("Essay"),

@@ -11,8 +11,6 @@ import com.vti.academy.enums.PositionName;
 
 public class Exercise5InputFormConsole {
 	private static ExerciseCommon com = new ExerciseCommon();
-	private static Department[] depList = { com.dp1, com.dp2, com.dp3, com.dp4, com.dp5 };
-	private static Position[] posList = { com.pos1, com.pos2, com.pos3, com.pos4 };
 	private static Account[] accList = { com.acc1, com.acc2, com.acc3, com.acc4, com.acc5 };
 	private static Group[] grList = { com.gr1, com.gr2, com.gr3, com.gr4 };
 	private static Scanner scn;

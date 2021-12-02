@@ -26,8 +26,8 @@ public class Exercise2 {
 		studentList[5] = new Student(6, "Nguyen Van B1", 2);
 		studentList[6] = new Student(7, "Nguyen Van B2", 2);
 		studentList[7] = new Student(8, "Nguyen Van B3", 2);
-		studentList[8] = new Student(9, "Nguyen Van B4", 2);
-		studentList[9] = new Student(10, "Nguyen Van B5", 2);
+		studentList[8] = new Student(9, "Nguyen Van C1", 3);
+		studentList[9] = new Student(10, "Nguyen Van C2", 3);
 	}
 
 	private void caLopDiemDanh() {
@@ -56,19 +56,17 @@ public class Exercise2 {
 		System.out.println("\n--- Question 3:");
 		HinhChuNhat hcn = new HinhChuNhat(10.5f, 15f);
 		System.out.println(hcn);
-		hcn.tinhChuVi();
-		hcn.tinhDienTich();
+		System.out.println("Tính chu vi theo hình chữ nhật");
+		System.out.println(hcn.tinhChuVi());
+		System.out.println("Tính diện tích theo hình chữ nhật");
+		System.out.println(hcn.tinhDienTich());
 		System.out.println();
 
-		HinhChuNhatDacBiet hcndb = new HinhChuNhatDacBiet(10f, 20f);
-		System.out.println(hcndb);
-		hcndb.tinhChuVi();
-		hcndb.tinhDienTich();
-		System.out.println();
-		
 		HinhVuong hv = new HinhVuong(20f);
 		System.out.println(hv);
-		hv.tinhChuVi();
-		hv.tinhDienTich();
+		System.out.println("Tính chu vi theo hình vuông");
+		System.out.println(hv.tinhChuVi());
+		System.out.println("Tính diện tích theo hình vuông");
+		System.out.println(hv.tinhDienTich());
 	}
 }

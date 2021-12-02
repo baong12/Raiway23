@@ -16,7 +16,7 @@ public class HinhChuNhat {
 
 	@Override
 	public String toString() {
-		return getType(this) + " [width=" + width + ", height=" + height + "]";
+		return "HinhChuNhat [width=" + width + ", height=" + height + "]";
 	}
 
 	public Float getWidth() {
@@ -35,25 +35,11 @@ public class HinhChuNhat {
 		this.height = height;
 	}
 
-	public void tinhDienTich() {
-		System.out.println("Tính diện tích theo " + getType(this) + ": " + width * height);
+	public Float tinhDienTich() {
+		return width * height;
 	}
 
-	public void tinhChuVi() {
-		System.out.println("Tính chu vi theo " + getType(this) + ": " + 2 * (width + height));
-	}
-
-	private String getType(HinhChuNhat obj) {
-		String type = "không xác định";
-		if (obj instanceof HinhChuNhat) {
-			type = "hình chữ nhật";
-		}
-		if (obj instanceof HinhVuong) {
-			type = "hình vuông";
-		}
-		if (obj instanceof HinhChuNhatDacBiet) {
-			type = "hình chữ nhật đặc biệt";
-		}
-		return type;
+	public Float tinhChuVi() {
+		return 2 * (width + height);
 	}
 }

@@ -10,9 +10,8 @@ public class Exercise1 {
 	private News[] newsList;
 	private final int MAX_RATE_COUNT = 3;
 
-	public void myNews() {
+	public void myNews(Scanner scanner) {
 		newsList = new News[] {};
-		Scanner scanner = new Scanner(System.in);
 		boolean isContinue = true;
 
 		while (isContinue) {
@@ -48,8 +47,6 @@ public class Exercise1 {
 			scanner.nextLine();
 			isContinue = select == 1;
 		}
-
-		scanner.close();
 	}
 
 	private void insertNewsUI(Scanner scanner) {
@@ -73,14 +70,14 @@ public class Exercise1 {
 
 		newsList = ArrayUtils.add(newsList, newNews);
 		System.out.println("Thêm thành công");
-		newNews.Display();
+		newNews.display();
 	}
 
 	private void viewListNews() {
 		if (newsList.length > 0) {
 			System.out.println("Danh sách tin tức:");
 			for (News news : newsList) {
-				news.Display();
+				news.display();
 			}
 		} else {
 			System.out.println("Không có tin tức");
@@ -91,8 +88,8 @@ public class Exercise1 {
 		if (newsList.length > 0) {
 			System.out.println("Tính toán rate trung bình");
 			for (News news : newsList) {
-				news.Calculate();
-				news.Display();
+				news.calculate();
+				news.display();
 			}
 		} else {
 			System.out.println("Không có tin tức");

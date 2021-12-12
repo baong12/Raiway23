@@ -6,6 +6,7 @@ import com.vti.entity.Department;
 import com.vti.entity.Group;
 import com.vti.entity.Position;
 import com.vti.entity.ScannerUtils;
+import com.vti.entity.enums.PositionName;
 
 public class Exercise2_Exeption {
 	private Department[] depList;
@@ -25,6 +26,11 @@ public class Exercise2_Exeption {
 		} catch (ArithmeticException e) {
 			System.out.println("Cannot divide by 0");
 		}
+		
+		for (var name : PositionName.values()) {
+			name.getClass();
+		}
+		
 		return result;
 	}
 
@@ -43,7 +49,7 @@ public class Exercise2_Exeption {
 		} catch (ArithmeticException e) {
 			System.out.println("Cannot divide by 0");
 		} finally {
-			System.out.println("Divide completed");
+			System.out.println("Divide completed!");
 		}
 		return result;
 	}
@@ -122,7 +128,7 @@ public class Exercise2_Exeption {
 		Scanner scanner = new Scanner(System.in);
 		try {
 			String input = scanner.nextLine();
-			age = Integer.valueOf(input);
+			age = Integer.parseInt(input);
 			if (age < 0) {
 				age = 0;
 				System.out.println("Wrong inputing! The age must be greater than 0, please input again.");
@@ -205,12 +211,19 @@ public class Exercise2_Exeption {
 //		Position với điều kiện khi khởi tạo object sẽ yêu cầu nhập vào thông
 //		tin luôn trong constructor (VD như hình dưới)
 	public void question9() {
+		Scanner scanner = new Scanner(System.in);
+		ScannerUtils scUtils = new ScannerUtils(scanner);
+		
 		System.out.println("Tạo phòng ban");
-		Department dep = new Department();
+		Department dep = new Department(scUtils);
 		System.out.println(dep);
+		
 		System.out.println("Tạo chức vụ");
-		Position pos = new Position();
+		Position pos = new Position(scUtils);
 		System.out.println(pos);
+		
+//		scanner.close();
+//		scUtils.scanner.close();
 	}
 	
 //	Question 10: làm giống bài 9

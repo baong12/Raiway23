@@ -8,14 +8,15 @@ public class Department {
 	public byte id;
 	public String name;
 
-	public Department() {
-		scanner = new Scanner(System.in);
-		ScannerUtils scannerUtils = new ScannerUtils(scanner);
+	public Department(ScannerUtils scUtils) {
 		System.out.println("Nhập id:");
-		this.id = (byte) scannerUtils.inputInt("Trời ơi nhập lại đi, int mà:");
+		this.id = (byte) scUtils.inputInt("Trời ơi nhập lại đi, int mà:");
 		System.out.println("Nhập tên phòng ban:");
-		this.name = scannerUtils.inputString();
-//		scanner.close();
+		this.name = scUtils.inputString();
+	}
+	
+	public void closeScanner() {
+		scanner.close();
 	}
 	
 	public Department(String name) {

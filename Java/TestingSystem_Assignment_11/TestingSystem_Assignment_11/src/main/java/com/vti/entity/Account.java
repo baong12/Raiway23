@@ -17,12 +17,12 @@ public class Account {
 
 	/**
 	 * @param id
-	 * @param username
+	 * @param fullName
 	 */
-	public Account(int id, String username) {
+	public Account(int id, String fullName) {
 		super();
 		this.id = id;
-		this.username = username;
+		this.fullName = fullName;
 	}
 
 	/**

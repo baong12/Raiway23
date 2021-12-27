@@ -106,7 +106,7 @@ public class AccountRepository implements IAccountRepository {
 	@Override
 	public int updateAccountById(int id, Account account) throws Exception {
 		if (isAccountExists(id) == false) {
-			throw new Exception("Cannot find account with id = " + id);
+			throw new Exception("Cannot find account with ID = " + id);
 		}
 		String sql = "UPDATE `account` SET email = ?, user_name = ?, full_name = ?, department_id = ?, "
 				+ "position_id = ?, create_date = ? WHERE account_id = ?";

@@ -12,10 +12,7 @@ import java.util.List;
 import com.vti.backend.datalayer.interfaces.IAccountRepository;
 import com.vti.backend.datalayer.interfaces.IGroupRepository;
 import com.vti.entity.Account;
-import com.vti.entity.Department;
 import com.vti.entity.Group;
-import com.vti.entity.Position;
-import com.vti.entity.enums.PositionName;
 import com.vti.utils.DateUtils;
 import com.vti.utils.JdbcUtils;
 
@@ -42,15 +39,15 @@ public class GroupRepository implements IGroupRepository {
 	@Override
 	public List<Account> getListAccountsByGroupId(int id) throws SQLException {
 		List<Account> result = new ArrayList<Account>();
-		String sql = "SELECT a.* FROM group_account ga " + "LEFT JOIN `account` a ON ga.account_id = g.account_id "
+		String sql = "SELECT a.* FROM group_account ga " + "LEFT JOIN `account` a ON ga.account_id = a.account_id "
 				+ "WHERE ga.group_id = ?;";
 		PreparedStatement preparedStatement = JdbcUtils.prepareStatement(sql);
 		preparedStatement.setInt(1, id);
 		ResultSet resultSet = preparedStatement.executeQuery();
 		while (resultSet.next()) {
 			int accountId = resultSet.getInt("account_id");
-			String username = resultSet.getString("user_name");
-			result.add(new Account(accountId, username));
+			String fullName = resultSet.getString("full_name");
+			result.add(new Account(accountId, fullName));
 		}
 		return result;
 	}
@@ -94,7 +91,7 @@ public class GroupRepository implements IGroupRepository {
 	@Override
 	public int updateGroupById(int id, Group group) throws SQLException, Exception {
 		if (isGroupExists(id) == false) {
-			throw new Exception("Cannot find group with id = " + id);
+			throw new Exception("Cannot find group with ID = " + id);
 		}
 		String sql = "UPDATE `group` SET group_name = ?, creator_id = ?, create_date = ? WHERE group_id = ?";
 		PreparedStatement preparedStatement = JdbcUtils.prepareStatement(sql);

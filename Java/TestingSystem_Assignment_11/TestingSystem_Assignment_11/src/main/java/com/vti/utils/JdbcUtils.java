@@ -5,21 +5,23 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 public class JdbcUtils {
-	private static final String IO_EXC = "Lỗi IO";
 	private static final String FILE_NOT_FOUND_EXC = "Lỗi không tìm thấy file";
-	private static final String SQL_EXC = "Lỗi kết nối SQL";
+	private static final String IO_EXC = "Lỗi IO";
 	private static final String CLASS_NOT_FOUND_EXC = "Lỗi đăng ký driver";
+	public static final String SQL_EXC = "Lỗi kết nối SQL";
 
-	private static Connection connection;
+	public static Connection connection;
 
 	public static void isConnectedForTesting() {
 		try {
 			Properties properties = new Properties();
-			properties.load(new FileInputStream("src/resource/database.properties"));
+			properties.load(new FileInputStream("src/main/resource/database.properties"));
 			String DB_URL = properties.getProperty("url");
 			String USER_NAME = properties.getProperty("username");
 			String PASSWORD = properties.getProperty("password");
@@ -64,5 +66,15 @@ public class JdbcUtils {
 			System.out.println(SQL_EXC);
 			e.printStackTrace();
 		}
+	}
+	
+	public static Statement createStatement() throws SQLException {
+		connect();
+		return connection.createStatement();
+	}
+	
+	public static PreparedStatement prepareStatement(String sql) throws SQLException {
+		connect();
+		return connection.prepareStatement(sql);
 	}
 }

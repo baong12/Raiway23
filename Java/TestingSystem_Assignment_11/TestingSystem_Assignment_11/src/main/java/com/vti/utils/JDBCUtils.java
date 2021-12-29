@@ -10,9 +10,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-public class JdbcUtils {
+public class JDBCUtils {
 	private static final String FILE_NOT_FOUND_EXC = "Lỗi không tìm thấy file";
-	private static final String IO_EXC = "Lỗi IO";
+	private static final String IO_EXC = "Lỗi không đọc được file";
 	private static final String CLASS_NOT_FOUND_EXC = "Lỗi đăng ký driver";
 	public static final String SQL_EXC = "Lỗi kết nối SQL";
 
@@ -20,42 +20,36 @@ public class JdbcUtils {
 
 	public static void isConnectedForTesting() {
 		try {
-			Properties properties = new Properties();
-			properties.load(new FileInputStream("src/main/resource/database.properties"));
-			String DB_URL = properties.getProperty("url");
-			String USER_NAME = properties.getProperty("username");
-			String PASSWORD = properties.getProperty("password");
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
-		} catch (FileNotFoundException e) {
-			System.out.println(FILE_NOT_FOUND_EXC);
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println(IO_EXC);
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			System.out.println(CLASS_NOT_FOUND_EXC);
-			e.printStackTrace();
-		} catch (SQLException e) {
-			System.out.println(SQL_EXC);
+			connect();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		System.out.println("Connect success!");
 	}
 
-	public static Connection connect() {
+	public static Connection connect() throws Exception {
 		try {
-			if (connection == null || connection.isClosed()) {
-				isConnectedForTesting();
-			}
+			Properties properties = new Properties();
+			properties.load(new FileInputStream("src/main/resource/database.properties"));
+			String DB_URL = properties.getProperty("url");
+			String USER_NAME = properties.getProperty("username");
+			String PASSWORD = properties.getProperty("password");
+			String DRIVER_NAME = properties.getProperty("driverName");
+			Class.forName(DRIVER_NAME);
+			connection = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
+		} catch (FileNotFoundException e) {
+			throw new Exception(FILE_NOT_FOUND_EXC, e);
+		} catch (IOException e) {
+			throw new IOException(IO_EXC, e);
+		} catch (ClassNotFoundException e) {
+			throw new ClassNotFoundException(CLASS_NOT_FOUND_EXC, e);
 		} catch (SQLException e) {
-			System.out.println(SQL_EXC);
-			e.printStackTrace();
+			throw new SQLException(SQL_EXC, e);
 		}
 		return connection;
 	}
 
-	public static void disconnect() {
+	public static void disconnect() throws Exception {
 		try {
 			if (connection == null || connection.isClosed()) {
 				return;
@@ -63,17 +57,16 @@ public class JdbcUtils {
 				connection.close();
 			}
 		} catch (SQLException e) {
-			System.out.println(SQL_EXC);
-			e.printStackTrace();
+			throw new SQLException(SQL_EXC, e);
 		}
 	}
 	
-	public static Statement createStatement() throws SQLException {
+	public static Statement createStatement() throws Exception {
 		connect();
 		return connection.createStatement();
 	}
 	
-	public static PreparedStatement prepareStatement(String sql) throws SQLException {
+	public static PreparedStatement prepareStatement(String sql) throws Exception {
 		connect();
 		return connection.prepareStatement(sql);
 	}

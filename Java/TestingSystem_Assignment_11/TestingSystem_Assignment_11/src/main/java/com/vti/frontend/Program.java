@@ -1,7 +1,5 @@
 package com.vti.frontend;
 
-import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -12,14 +10,11 @@ import com.vti.entity.Account;
 import com.vti.entity.Department;
 import com.vti.entity.Group;
 import com.vti.entity.Position;
-import com.vti.utils.JdbcUtils;
+import com.vti.utils.JDBCUtils;
 import com.vti.utils.ScannerUtils;
 
 public class Program {
-	private static final String PARSE_EXC = "Lỗi parse Date";
-
 	public static void main(String[] args) {
-//		JdbcUtils.connect();
 		System.out.println("1. Demo account");
 		System.out.println("2. Demo group");
 		switch (ScannerUtils.inputInt()) {
@@ -32,7 +27,11 @@ public class Program {
 		default:
 			break;
 		}
-		JdbcUtils.disconnect();
+		try {
+			JDBCUtils.disconnect();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		ScannerUtils.closeScanner();
 	}
 
@@ -64,13 +63,15 @@ public class Program {
 					System.out.println("Account " + (isExist ? "có" : "không") + " tồn tại.");
 					break;
 				case 4:
+					System.out.println("Nhập email:");
+					String email4 = ScannerUtils.inputString();
 					System.out.println("Nhập username:");
 					String username4 = ScannerUtils.inputString();
 					System.out.println("Nhập ID phòng ban:");
 					int depId4 = ScannerUtils.inputInt();
 					System.out.println("Nhập ID chức vụ:");
 					int posId4 = ScannerUtils.inputInt();
-					Account account4 = new Account(0, username4 + "@gmail.com", username4, username4.replace(".", " "),
+					Account account4 = new Account(0, email4, username4, username4.replace(".", " "),
 							new Department(depId4, null), new Position(posId4, null), new Date(), null);
 					int affectedCount4 = accountController.createAccount(account4);
 					System.out.println("Số bản ghi đã bị ảnh hưởng: " + affectedCount4);
@@ -78,13 +79,15 @@ public class Program {
 				case 5:
 					System.out.println("Nhập ID cần thay đổi:");
 					int id5 = ScannerUtils.inputInt();
+					System.out.println("Nhập email:");
+					String email5 = ScannerUtils.inputString();
 					System.out.println("Nhập username:");
 					String username5 = ScannerUtils.inputString();
 					System.out.println("Nhập ID phòng ban:");
 					int depId5 = ScannerUtils.inputInt();
 					System.out.println("Nhập ID chức vụ:");
 					int posId5 = ScannerUtils.inputInt();
-					Account account5 = new Account(0, username5 + "@gmail.com", username5, username5.replace(".", " "),
+					Account account5 = new Account(0, email5, username5, username5.replace(".", " "),
 							new Department(depId5, null), new Position(posId5, null), new Date(), null);
 					int affectedCount5 = accountController.updateAccountById(id5, account5);
 					System.out.println("Số bản ghi đã bị ảnh hưởng: " + affectedCount5);
@@ -99,14 +102,9 @@ public class Program {
 					isDone = true;
 					break;
 				}
-			} catch (SQLException e) {
-				System.out.println(JdbcUtils.SQL_EXC);
-				e.printStackTrace();
-			} catch (ParseException e) {
-				System.out.println(PARSE_EXC);
-				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
+				ScannerUtils.inputString();
 			}
 		}
 	}
@@ -168,14 +166,9 @@ public class Program {
 					isDone = true;
 					break;
 				}
-			} catch (SQLException e) {
-				System.out.println(JdbcUtils.SQL_EXC);
-				e.printStackTrace();
-			} catch (ParseException e) {
-				System.out.println(PARSE_EXC);
-				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
+				ScannerUtils.inputString();
 			}
 		}
 	}

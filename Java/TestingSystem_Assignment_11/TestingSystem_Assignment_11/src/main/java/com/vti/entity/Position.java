@@ -34,6 +34,6 @@ public class Position {
 
 	@Override
 	public String toString() {
-		return "Position [id=" + id + ", name=" + name.getPositionName() + "]";
+		return "Position [id=" + id + ", name=" + (name == null ? "null" : name.getPositionName()) + "]";
 	}
 }

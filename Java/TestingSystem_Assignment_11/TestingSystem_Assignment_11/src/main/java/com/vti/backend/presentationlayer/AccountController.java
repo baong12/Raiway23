@@ -1,42 +1,43 @@
 package com.vti.backend.presentationlayer;
 
-import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.List;
 
 import com.vti.backend.businesslayer.AccountService;
 import com.vti.backend.businesslayer.interfaces.IAccountService;
+import com.vti.backend.presentationlayer.validation.IValidator;
+import com.vti.backend.presentationlayer.validation.Validator;
 import com.vti.entity.Account;
-import com.vti.entity.Group;
 
 public class AccountController {
 	private IAccountService accountService = new AccountService();
 	
-	public List<Account> getListAccounts() throws SQLException, ParseException {
+	public List<Account> getListAccounts() throws Exception {
 		return accountService.getListAccounts();
 	}
-	
-	public List<Group> getGroupListByAccountId(int id) throws SQLException {
-		return accountService.getGroupListByAccountId(id);
-	}
 
-	public int createAccount(Account account) throws SQLException {
+	public int createAccount(Account account) throws Exception {
+		IValidator validator = new Validator();
+		try {
+			validator.validateEmail(account.getEmail());
+		} catch (Exception e) {
+			throw new Exception("Email is invalid", e);
+		}
 		return accountService.createAccount(account);
 	}
 
-	public Account getAccountById(int id) throws SQLException, ParseException {
+	public Account getAccountById(int id) throws Exception {
 		return accountService.getAccountById(id);
 	}
 
-	public boolean isAccountExists(int id) throws SQLException {
+	public boolean isAccountExists(int id) throws Exception {
 		return accountService.isAccountExists(id);
 	}
 
-	public int updateAccountById(int id, Account account) throws SQLException, Exception {
+	public int updateAccountById(int id, Account account) throws Exception {
 		return accountService.updateAccountById(id, account);
 	}
 
-	public int deleteAccountById(int id) throws SQLException, Exception {
+	public int deleteAccountById(int id) throws Exception {
 		return accountService.deleteAccountById(id);
 	}
 }

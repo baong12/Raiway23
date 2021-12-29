@@ -2,29 +2,29 @@ package com.vti.backend.datalayer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import com.vti.backend.datalayer.interfaces.IAccountRepository;
 import com.vti.backend.datalayer.interfaces.IDepartmentRepository;
+import com.vti.backend.datalayer.interfaces.IPositionRepository;
 import com.vti.entity.Account;
 import com.vti.entity.Department;
 import com.vti.entity.Group;
 import com.vti.entity.Position;
-import com.vti.entity.enums.PositionName;
 import com.vti.utils.DateUtils;
-import com.vti.utils.JdbcUtils;
+import com.vti.utils.JDBCUtils;
 
 public class AccountRepository implements IAccountRepository {
 	private IDepartmentRepository departmentRepository = new DepartmentRepository();
+	private IPositionRepository positionRepository = new PositionRepository();
 
-	public List<Account> getListAccounts() throws SQLException, ParseException {
+	@Override
+	public List<Account> getListAccounts() throws Exception {
 		List<Account> resultList = new ArrayList<Account>();
-		Statement statement = JdbcUtils.createStatement();
+		Statement statement = JDBCUtils.createStatement();
 		String sql = "SELECT * FROM `account`;";
 		ResultSet resultSet = statement.executeQuery(sql);
 		while (resultSet.next()) {
@@ -32,37 +32,35 @@ public class AccountRepository implements IAccountRepository {
 			String email = resultSet.getString("email");
 			String username = resultSet.getString("user_name");
 			String fullName = resultSet.getString("full_name");
-			int depId = resultSet.getInt("department_id");
-			Department dep = departmentRepository.getDepartmentById(depId);
-			int posId = resultSet.getInt("position_id");
-			Position pos = new Position(posId, PositionName.values()[posId - 1]);
+			Department dep = departmentRepository.getDepartmentById(resultSet.getInt("department_id"));
+			Position pos = positionRepository.getPositionById(resultSet.getInt("position_id"));
 			Date createDate = DateUtils.getDate(resultSet.getString("create_date"), DateUtils.mysqlDatePattern);
-			List<Group> groups = getGroupListByAccountId(id);
+			List<Group> groups = GroupRepository.getGroupListByAccountId(id);
 			resultList.add(new Account(id, email, username, fullName, dep, pos, createDate, groups));
 		}
 		return resultList;
 	}
-
-	public List<Group> getGroupListByAccountId(int id) throws SQLException {
-		List<Group> result = new ArrayList<Group>();
-		String sql = "SELECT g.* FROM group_account ga " + "LEFT JOIN `group` g ON ga.group_id = g.group_id "
-				+ "WHERE ga.account_id = ?;";
-		PreparedStatement preparedStatement = JdbcUtils.prepareStatement(sql);
+	
+	public static List<Account> getListAccountsByGroupId(int id) throws Exception {
+		List<Account> result = new ArrayList<Account>();
+		String sql = "SELECT a.* FROM group_account ga " + "LEFT JOIN `account` a ON ga.account_id = a.account_id "
+				+ "WHERE ga.group_id = ?;";
+		PreparedStatement preparedStatement = JDBCUtils.prepareStatement(sql);
 		preparedStatement.setInt(1, id);
 		ResultSet resultSet = preparedStatement.executeQuery();
 		while (resultSet.next()) {
-			int groupId = resultSet.getInt("group_id");
-			String name = resultSet.getString("group_name");
-			result.add(new Group(groupId, name));
+			int accountId = resultSet.getInt("account_id");
+			String fullName = resultSet.getString("full_name");
+			result.add(new Account(accountId, fullName));
 		}
 		return result;
 	}
 
 	@Override
-	public int createAccount(Account account) throws SQLException {
+	public int createAccount(Account account) throws Exception {
 		String sql = "INSERT INTO `account`(email, user_name, full_name, department_id, position_id, create_date) "
 				+ "VALUES (?, ?, ?, ?, ?, ?);";
-		PreparedStatement preparedStatement = JdbcUtils.prepareStatement(sql);
+		PreparedStatement preparedStatement = JDBCUtils.prepareStatement(sql);
 		preparedStatement.setString(1, account.getEmail());
 		preparedStatement.setString(2, account.getUsername());
 		preparedStatement.setString(3, account.getFullName());
@@ -74,30 +72,28 @@ public class AccountRepository implements IAccountRepository {
 	}
 
 	@Override
-	public Account getAccountById(int id) throws SQLException, ParseException {
+	public Account getAccountById(int id) throws Exception {
 		String sql = "SELECT * FROM `account` WHERE account_id = ?;";
-		PreparedStatement preparedStatement = JdbcUtils.prepareStatement(sql);
+		PreparedStatement preparedStatement = JDBCUtils.prepareStatement(sql);
 		preparedStatement.setInt(1, id);
 		ResultSet resultSet = preparedStatement.executeQuery();
 		if (resultSet.next()) {
 			String email = resultSet.getString("email");
 			String username = resultSet.getString("user_name");
 			String fullName = resultSet.getString("full_name");
-			int depId = resultSet.getInt("department_id");
-			Department dep = departmentRepository.getDepartmentById(depId);
-			int posId = resultSet.getInt("position_id");
-			Position pos = new Position(posId, PositionName.values()[posId - 1]);
+			Department dep = departmentRepository.getDepartmentById(resultSet.getInt("department_id"));
+			Position pos = positionRepository.getPositionById(resultSet.getInt("position_id"));
 			Date createDate = DateUtils.getDate(resultSet.getString("create_date"), DateUtils.mysqlDatePattern);
-			List<Group> groups = getGroupListByAccountId(id);
+			List<Group> groups = GroupRepository.getGroupListByAccountId(id);
 			return new Account(id, email, username, fullName, dep, pos, createDate, groups);
 		}
 		return null;
 	}
 
 	@Override
-	public boolean isAccountExists(int id) throws SQLException {
+	public boolean isAccountExists(int id) throws Exception {
 		String sql = "SELECT * FROM `account` WHERE account_id = ?;";
-		PreparedStatement preparedStatement = JdbcUtils.prepareStatement(sql);
+		PreparedStatement preparedStatement = JDBCUtils.prepareStatement(sql);
 		preparedStatement.setInt(1, id);
 		ResultSet resultSet = preparedStatement.executeQuery();
 		return resultSet.next();
@@ -110,7 +106,7 @@ public class AccountRepository implements IAccountRepository {
 		}
 		String sql = "UPDATE `account` SET email = ?, user_name = ?, full_name = ?, department_id = ?, "
 				+ "position_id = ?, create_date = ? WHERE account_id = ?";
-		PreparedStatement preparedStatement = JdbcUtils.prepareStatement(sql);
+		PreparedStatement preparedStatement = JDBCUtils.prepareStatement(sql);
 		preparedStatement.setString(1, account.getEmail());
 		preparedStatement.setString(2, account.getUsername());
 		preparedStatement.setString(3, account.getFullName());
@@ -128,7 +124,7 @@ public class AccountRepository implements IAccountRepository {
 			throw new Exception("Cannot find account with id = " + id);
 		}
 		String sql = "DELETE FROM `account` WHERE account_id = ?;";
-		PreparedStatement preparedStatement = JdbcUtils.prepareStatement(sql);
+		PreparedStatement preparedStatement = JDBCUtils.prepareStatement(sql);
 		preparedStatement.setInt(1, id);
 		int affectedCount = preparedStatement.executeUpdate();
 		return affectedCount;

@@ -2,17 +2,16 @@ package com.vti.backend.datalayer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import com.vti.backend.datalayer.interfaces.IDepartmentRepository;
 import com.vti.entity.Department;
-import com.vti.utils.JdbcUtils;
+import com.vti.utils.JDBCUtils;
 
 public class DepartmentRepository implements IDepartmentRepository {
-	public Department getDepartmentById(int id) throws SQLException {
+	public Department getDepartmentById(int id) throws Exception {
 		Department result = null;
 		String sql = "SELECT * FROM department WHERE department_id = ?";
-		PreparedStatement preparedStatement = JdbcUtils.connection.prepareStatement(sql);
+		PreparedStatement preparedStatement = JDBCUtils.prepareStatement(sql);
 
 		preparedStatement.setInt(1, id);
 		ResultSet resultSet = preparedStatement.executeQuery();

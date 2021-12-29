@@ -15,4 +15,11 @@ public enum PositionName {
 	public String getPositionName() {
 		return positionName;
 	}
+	
+	public PositionName getKey(String positionName) {
+		if (positionName.equals(this.positionName)) {
+			return this;
+		}
+		return null;
+	}
 }

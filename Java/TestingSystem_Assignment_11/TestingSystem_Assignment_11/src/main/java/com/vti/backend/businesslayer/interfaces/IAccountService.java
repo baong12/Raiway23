@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.util.List;
 
 import com.vti.entity.Account;
-import com.vti.entity.Group;
 
 public interface IAccountService {
 	/**
@@ -15,16 +14,7 @@ public interface IAccountService {
 	 * @throws SQLException
 	 * @throws ParseException
 	 */
-	public List<Account> getListAccounts() throws SQLException, ParseException;
-
-	/**
-	 * Get the list of groups that this account belongs to.
-	 * 
-	 * @param id the id of account
-	 * @return list of groups
-	 * @throws SQLException
-	 */
-	public List<Group> getGroupListByAccountId(int id) throws SQLException;
+	public List<Account> getListAccounts() throws Exception;
 
 	/**
 	 * Create an account in database.
@@ -33,7 +23,7 @@ public interface IAccountService {
 	 * @return affected row count
 	 * @throws SQLException
 	 */
-	public int createAccount(Account account) throws SQLException;
+	public int createAccount(Account account) throws Exception;
 
 	/**
 	 * Get an account in database by id.
@@ -43,7 +33,7 @@ public interface IAccountService {
 	 * @throws SQLException
 	 * @throws ParseException
 	 */
-	public Account getAccountById(int id) throws SQLException, ParseException;
+	public Account getAccountById(int id) throws Exception;
 
 	/**
 	 * Check if an account exists in database.
@@ -52,7 +42,7 @@ public interface IAccountService {
 	 * @return true if account exists
 	 * @throws SQLException
 	 */
-	public boolean isAccountExists(int id) throws SQLException;
+	public boolean isAccountExists(int id) throws Exception;
 
 	/**
 	 * Update an account in database by id.
@@ -63,7 +53,7 @@ public interface IAccountService {
 	 * @throws SQLException
 	 * @throws Exception    Cannot find account with given id
 	 */
-	public int updateAccountById(int id, Account account) throws SQLException, Exception;
+	public int updateAccountById(int id, Account account) throws Exception;
 
 	/**
 	 * Delete an account in database by id.
@@ -73,5 +63,5 @@ public interface IAccountService {
 	 * @throws SQLException
 	 * @throws Exception    Cannot find account with given id
 	 */
-	public int deleteAccountById(int id) throws SQLException, Exception;
+	public int deleteAccountById(int id) throws Exception;
 }

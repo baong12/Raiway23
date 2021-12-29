@@ -120,9 +120,8 @@ public class Account {
 	public String toString(boolean allParameters) {
 		if (allParameters) {
 			return "Account [id=" + id + ", email=" + email + ", username=" + username + ", fullName=" + fullName
-					+ ", department=" + department + ", position=" + position.getName().getPositionName()
-					+ ", createDate=" + DateUtils.formatDate(createDate, DateUtils.mysqlDatePattern) + ",\n  groups="
-					+ groups + "]";
+					+ ", department=" + department + ", position=" + position + ", createDate="
+					+ DateUtils.formatDate(createDate, DateUtils.mysqlDatePattern) + ",\n  groups=" + groups + "]";
 		} else {
 			return "Account [id=" + id + ", fullName=" + fullName + "]";
 		}

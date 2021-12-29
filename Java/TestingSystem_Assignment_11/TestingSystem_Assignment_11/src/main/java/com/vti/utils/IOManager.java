@@ -31,7 +31,7 @@ public class IOManager {
 			try {
 				fileInputStream.close();
 			} catch (IOException e) {
-				System.out.println(errorMessage);
+				System.out.println(IOErrorMessage);
 				e.printStackTrace();
 			}
 		}

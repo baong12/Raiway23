@@ -1,19 +1,10 @@
 package com.vti.backend.datalayer.interfaces;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.vti.entity.Group;
 
 public interface IGroupRepository {
-	public List<Group> getListGroups() throws Exception;
-
-	public int createGroup(Group group) throws Exception;
-
-	public Group getGroupById(int id) throws Exception;
-
-	public boolean isGroupExists(int id) throws Exception;
-
-	public int updateGroupById(int id, Group group) throws Exception;
-
-	public int deleteGroupById(int id) throws Exception;
+	public List<Group> getGroupListByAccountId(int id) throws SQLException;
 }

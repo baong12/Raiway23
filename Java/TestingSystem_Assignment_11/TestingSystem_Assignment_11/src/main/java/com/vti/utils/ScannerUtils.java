@@ -4,8 +4,7 @@ import java.util.Scanner;
 
 public class ScannerUtils {
 	private static Scanner scanner;
-	private static final String generalErrorMsg = "Đã có lỗi xảy ra";
-	private static final String errorMessage = "Nhập sai kiểu dữ liệu";
+	private static final String NUMBER_FORMAT_EXCEPTION = "Nhập sai kiểu dữ liệu";
 
 	public static void initScanner() {
 		if (scanner == null) {
@@ -13,7 +12,7 @@ public class ScannerUtils {
 		}
 	}
 	
-	public static int inputInt(String errorMsg) {
+	public static int inputInt() {
 		initScanner();
 		int output = 0;
 		boolean isOk = false;
@@ -24,20 +23,13 @@ public class ScannerUtils {
 				output = Integer.valueOf(input);
 			} catch (NumberFormatException e) {
 				isOk = false;
-				System.out.println(errorMsg);
-			} catch (Exception e) {
-				isOk = false;
-				System.out.println(generalErrorMsg);
+				System.out.println(NUMBER_FORMAT_EXCEPTION);
 			}
 		}
 		return output;
 	}
-	
-	public static int inputInt() {
-		return inputInt(errorMessage);
-	}
 
-	public static float inputFloat(String errorMessage) {
+	public static float inputFloat() {
 		initScanner();
 		float output = 0;
 		boolean isOk = false;
@@ -48,16 +40,13 @@ public class ScannerUtils {
 				output = Float.valueOf(input);
 			} catch (NumberFormatException e) {
 				isOk = false;
-				System.out.println(errorMessage);
-			} catch (Exception e) {
-				isOk = false;
-				System.out.println(generalErrorMsg);
+				System.out.println(NUMBER_FORMAT_EXCEPTION);
 			}
 		}
 		return output;
 	}
 
-	public static double inputDouble(String errorMessage) {
+	public static double inputDouble() {
 		initScanner();
 		double output = 0;
 		boolean isOk = false;
@@ -68,10 +57,7 @@ public class ScannerUtils {
 				output = Double.valueOf(input);
 			} catch (NumberFormatException e) {
 				isOk = false;
-				System.out.println(errorMessage);
-			} catch (Exception e) {
-				isOk = false;
-				System.out.println(generalErrorMsg);
+				System.out.println(NUMBER_FORMAT_EXCEPTION);
 			}
 		}
 		return output;

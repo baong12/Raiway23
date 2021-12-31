@@ -1,43 +1,66 @@
 package com.vti.backend.presentationlayer;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.vti.backend.businesslayer.AccountService;
 import com.vti.backend.businesslayer.interfaces.IAccountService;
-import com.vti.backend.presentationlayer.validation.IValidator;
-import com.vti.backend.presentationlayer.validation.Validator;
 import com.vti.entity.Account;
 
 public class AccountController {
 	private IAccountService accountService = new AccountService();
 	
-	public List<Account> getListAccounts() throws Exception {
-		return accountService.getListAccounts();
-	}
-
-	public int createAccount(Account account) throws Exception {
-		IValidator validator = new Validator();
+	public List<Account> getListAccounts() {
 		try {
-			validator.validateEmail(account.getEmail());
-		} catch (Exception e) {
-			throw new Exception("Email is invalid", e);
+			return accountService.getListAccounts();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
 		}
-		return accountService.createAccount(account);
 	}
 
-	public Account getAccountById(int id) throws Exception {
-		return accountService.getAccountById(id);
+	public int createAccount(Account account) {
+		try {
+			return accountService.createAccount(account);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 
-	public boolean isAccountExists(int id) throws Exception {
-		return accountService.isAccountExists(id);
+	public Account getAccountById(int id) {
+		try {
+			return accountService.getAccountById(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
-	public int updateAccountById(int id, Account account) throws Exception {
-		return accountService.updateAccountById(id, account);
+	public boolean isAccountExists(int id) {
+		try {
+			return accountService.isAccountExists(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
-	public int deleteAccountById(int id) throws Exception {
-		return accountService.deleteAccountById(id);
+	public int updateAccountById(int id, Account account) {
+		try {
+			return accountService.updateAccountById(id, account);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	public int deleteAccountById(int id) {
+		try {
+			return accountService.deleteAccountById(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 }

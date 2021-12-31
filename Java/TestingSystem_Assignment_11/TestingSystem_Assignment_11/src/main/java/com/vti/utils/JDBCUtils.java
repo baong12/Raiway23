@@ -15,19 +15,16 @@ public class JDBCUtils {
 	private static final String IO_EXC = "Lỗi không đọc được file";
 	private static final String CLASS_NOT_FOUND_EXC = "Lỗi đăng ký driver";
 	public static final String SQL_EXC = "Lỗi kết nối SQL";
+	private static final String GENERAL_EXC = "Đã có lỗi!";
 
-	public static Connection connection;
+	public static Connection connection = null;
 
 	public static void isConnectedForTesting() {
-		try {
-			connect();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		connect();
 		System.out.println("Connect success!");
 	}
 
-	public static Connection connect() throws Exception {
+	public static Connection connect() {
 		try {
 			Properties properties = new Properties();
 			properties.load(new FileInputStream("src/main/resource/database.properties"));
@@ -38,18 +35,22 @@ public class JDBCUtils {
 			Class.forName(DRIVER_NAME);
 			connection = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
 		} catch (FileNotFoundException e) {
-			throw new Exception(FILE_NOT_FOUND_EXC, e);
+			System.out.println(FILE_NOT_FOUND_EXC);
+			e.printStackTrace();
 		} catch (IOException e) {
-			throw new IOException(IO_EXC, e);
+			System.out.println(IO_EXC);
+			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			throw new ClassNotFoundException(CLASS_NOT_FOUND_EXC, e);
+			System.out.println(CLASS_NOT_FOUND_EXC);
+			e.printStackTrace();
 		} catch (SQLException e) {
-			throw new SQLException(SQL_EXC, e);
+			System.out.println(SQL_EXC);
+			e.printStackTrace();
 		}
 		return connection;
 	}
 
-	public static void disconnect() throws Exception {
+	public static void disconnect() {
 		try {
 			if (connection == null || connection.isClosed()) {
 				return;
@@ -57,17 +58,38 @@ public class JDBCUtils {
 				connection.close();
 			}
 		} catch (SQLException e) {
-			throw new SQLException(SQL_EXC, e);
+			System.out.println(SQL_EXC);
+			e.printStackTrace();
 		}
 	}
-	
-	public static Statement createStatement() throws Exception {
-		connect();
-		return connection.createStatement();
+
+	public static Statement createStatement() {
+		Statement statement = null;
+		try {
+			connect();
+			statement = connection.createStatement();
+		} catch (SQLException e) {
+			System.out.println(SQL_EXC);
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println(GENERAL_EXC);
+			e.printStackTrace();
+		}
+		return statement;
 	}
-	
-	public static PreparedStatement prepareStatement(String sql) throws Exception {
-		connect();
-		return connection.prepareStatement(sql);
+
+	public static PreparedStatement prepareStatement(String sql) {
+		PreparedStatement preparedStatement = null;
+		try {
+			connect();
+			preparedStatement = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			System.out.println(SQL_EXC);
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println(GENERAL_EXC);
+			e.printStackTrace();
+		}
+		return preparedStatement;
 	}
 }

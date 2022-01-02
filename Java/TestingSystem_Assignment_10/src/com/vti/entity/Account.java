@@ -2,39 +2,42 @@ package com.vti.entity;
 
 import java.util.Date;
 
+import com.vti.utils.DateUtils;
+
 public class Account {
 	public int id;
 	public String email;
 	public String username;
 	public String fullName;
-	public int departmentId;
-	public int positionId;
+	public Department department;
+	public Position position;
 	public Date createDate;
-	
+
 	/**
 	 * @param id
 	 * @param email
 	 * @param username
 	 * @param fullName
-	 * @param departmentId
-	 * @param positionId
+	 * @param department
+	 * @param position
 	 * @param createDate
 	 */
-	public Account(int id, String email, String username, String fullName, int departmentId, int positionId,
+	public Account(int id, String email, String username, String fullName, Department department, Position position,
 			Date createDate) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.username = username;
 		this.fullName = fullName;
-		this.departmentId = departmentId;
-		this.positionId = positionId;
+		this.department = department;
+		this.position = position;
 		this.createDate = createDate;
 	}
 
 	@Override
 	public String toString() {
 		return "Account [id=" + id + ", email=" + email + ", username=" + username + ", fullName=" + fullName
-				+ ", departmentId=" + departmentId + ", positionId=" + positionId + ", createDate=" + createDate + "]";
+				+ ", department=" + department + ", position=" + position + ", createDate="
+				+ DateUtils.formatDate(createDate, "yyyy-MM-dd") + "]";
 	}
 }

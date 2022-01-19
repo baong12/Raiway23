@@ -1,0 +1,38 @@
+body {
+  background-color: lightsteelblue;
+}
+
+section {
+  width: 300px;
+  background-color: white;
+  padding: 20px;
+  margin: 10px;
+  text-align: justify;
+}
+
+section img {
+  width: 100%;
+}
+
+.left-float {
+  float: left;
+}
+
+.a-button {
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  color: white;
+  background-color: royalblue;
+}
+
+.flex-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+}
+/*# sourceMappingURL=style.css.map */

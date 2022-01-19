@@ -1,0 +1,173 @@
+body {
+  background-color: moccasin;
+}
+
+body p {
+  line-height: 1.5rem;
+}
+
+.category-bar {
+  width: 1000px;
+  margin: 0 auto;
+  background-color: white;
+  padding-left: 80px;
+  padding-right: 80px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.category-bar ul {
+  margin: 0;
+  padding: 0;
+}
+
+.category-bar li {
+  display: inline-block;
+  margin-bottom: -2px;
+  margin-right: 10px;
+}
+
+.category-bar a {
+  display: block;
+  padding: 15px 0;
+  text-decoration: none;
+  color: black;
+  border-bottom: 4px solid transparent;
+}
+
+.category-bar .selected,
+.category-bar a:hover {
+  border-color: #a70e1a;
+}
+
+.category-bar .right-float {
+  float: right;
+}
+
+main {
+  width: 1000px;
+  margin: 0 auto;
+  background-color: white;
+  border: 0px;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+main hr {
+  border: 0;
+  border-top: 1px solid lightgrey;
+}
+
+main .title * {
+  margin: 10px 0;
+}
+
+main .title span {
+  font-size: small;
+  font-weight: bold;
+}
+
+main .title .author {
+  color: darkorange;
+}
+
+main .title .time {
+  color: darkgray;
+  margin-left: 20px;
+}
+
+main .title .socials a {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid tan;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+main .title .like,
+main .title .share {
+  color: white;
+  background-color: royalblue;
+}
+
+main .title .save {
+  background-color: white;
+  color: royalblue;
+}
+
+main .title .mail {
+  background-color: dimgray;
+  color: white;
+}
+
+main article ul {
+  color: darkorange;
+}
+
+main article a {
+  line-height: 1.5rem;
+  text-decoration: none;
+  color: black;
+}
+
+main article a:hover {
+  color: darkorange;
+}
+
+main article .photo-card {
+  max-width: 70%;
+  margin: auto;
+  background-color: lightgrey;
+}
+
+main article .photo-card img {
+  width: 100%;
+}
+
+main article .photo-card div {
+  padding: 10px;
+}
+
+main article .quote {
+  font-style: italic;
+}
+
+main .ref-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+}
+
+main .ref {
+  margin: 0px;
+  padding: 10px 10px;
+  font-size: 12px;
+  border-radius: 20px;
+  background-color: whitesmoke;
+  text-decoration: none;
+  color: black;
+}
+
+main .ref .copy {
+  margin-left: 10px;
+}
+
+main .related {
+  font-size: larger;
+  line-height: 2rem;
+}
+
+main .related a {
+  font-weight: bold;
+  text-decoration: none;
+  color: midnightblue;
+}
+
+main .related a:hover {
+  color: black;
+}
+/*# sourceMappingURL=style.css.map */

@@ -42,3 +42,9 @@ header {
     font-size: 2rem;
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
+
+iframe {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}

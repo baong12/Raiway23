@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <!-- <link rel="stylesheet" href="css/style2.css"> -->
+    <script src="jquery-3.6.0.min.js"></script>
+    <!-- <script src="test.js"></script> -->
+
+    <title>Assignment 2 - Exercise 2</title>
+
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="assigment-nav">
+        <ul>
+            <li><a href="exercise1.html">Exercise 1</a></li>
+            <li><a class="active" href="exercise2.html">Exercise 2</a></li>
+            <li><a href="exercise3.html">Exercise 3</a></li>
+            <li><a href="exercise4.html">Exercise 4</a></li>
+        </ul>
+    </div>
+    <header>
+        Assignment 2 - Exercise 2
+    </header>
+    <table id="data-table">
+        
+    </table>
+
+</body>
+<script>
+    $(document).ready(function () {
+        $("header").click(function () {
+            $.ajax({
+                url: "https://61ed284cf3011500174d230b.mockapi.io/api/v1/users",
+                type: "GET",
+                success: function (result) {
+                    var content = "<tr><th>Id</th><th>Name</th></tr>";
+                    result.forEach(element => {
+                        content += "<tr><td>" + element.id + "</td><td>" + element.name + "</td></tr>";
+                    });
+                    document.getElementById("data-table").innerHTML = content;
+                }
+            });
+        });
+    });
+</script>
+
+</html>

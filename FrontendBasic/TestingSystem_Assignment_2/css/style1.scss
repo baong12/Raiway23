@@ -1,0 +1,25 @@
+body {
+    background-color: blanchedalmond;
+}
+
+section {
+    background-color: white;
+    padding: 40px;
+    margin: 20px 0;
+}
+
+@mixin bordered($color: black, $width: 1px) {
+    border: $width solid $color;
+}
+
+.green-border {
+    @include bordered(green, 1px);
+}
+
+.red-border {
+    @include bordered(red, 1px);
+}
+
+.border {
+    @include bordered($width: 1px);
+}

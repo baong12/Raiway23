@@ -1,0 +1,46 @@
+<!-- Header -->
+<header class="w3-container" style="padding-top:22px">
+    <h3><b><i class="fa fa-users fa-fw"></i> Manage Accounts</b></h5>
+</header>
+<br>
+
+<div class="w3-container">
+    <div class="w3-bar w3-white w3-padding">
+        <form>
+            <input class="w3-bar-item w3-border" type="text" name="search" placeholder="Search..">
+        </form>
+        <!-- Float links to the right. Hide them on small screens -->
+        <div class="w3-right w3-hide-small">
+            <a id="add" class="w3-bar-item w3-button"><i class="fa fa-plus fa-fw"></i></a>
+            <a id="refresh" class="w3-bar-item w3-button"><i class="fa fa-sync fa-fw"></i></a>
+            <a id="delete" class="w3-bar-item w3-button"><i class="fa fa-trash fa-fw"></i></a>
+        </div>
+    </div>
+</div>
+
+<div class="w3-container">
+    <table id="data-table" class="w3-table-all">
+        <tr class="w3-theme-d5">
+            <th><input id='select-all' onchange="selectAll()" type='checkbox'></th>
+            <th>ID</th>
+            <th>Group Name</th>
+            <th>Member</th>
+            <th>Creator</th>
+            <th>Create Date</th>
+            <th></th>
+        </tr>
+    </table>
+    <hr>
+</div>
+
+<div id="dialog" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content w3-card-4" style="min-height: 20px">
+        <span onclick="close_modal();" class="w3-button w3-display-topright"><i
+                class="fa fa-times fa-fw"></i></span>
+        <div id="dialog-content" class="w3-container">
+        </div>
+    </div>
+</div>
+
+<script src="/js/group_service.js"></script>
+<script src="/js/group_controller.js"></script>

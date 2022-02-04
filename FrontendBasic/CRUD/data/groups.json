@@ -1,0 +1,72 @@
+[
+    {
+     "groupName": "Garden",
+     "member": 47,
+     "creator": "Trycia_Schuppe",
+     "createDate": "2021-06-27T18:26:06.825Z",
+     "id": "1"
+    },
+    {
+     "groupName": "Tools",
+     "member": 88,
+     "creator": "Estrella.Ratke",
+     "createDate": "2021-11-09T09:20:29.763Z",
+     "id": "2"
+    },
+    {
+     "groupName": "Kids",
+     "member": 12,
+     "creator": "Hannah_Donnelly",
+     "createDate": "2021-03-22T14:54:40.922Z",
+     "id": "3"
+    },
+    {
+     "groupName": "Sports",
+     "member": 17,
+     "creator": "Jaleel36",
+     "createDate": "2021-10-27T23:18:52.676Z",
+     "id": "4"
+    },
+    {
+     "groupName": "Computers",
+     "member": 93,
+     "creator": "Meda2",
+     "createDate": "2021-10-18T14:51:05.024Z",
+     "id": "5"
+    },
+    {
+     "groupName": "Electronics",
+     "member": 68,
+     "creator": "Will27",
+     "createDate": "2021-03-16T09:45:22.263Z",
+     "id": "6"
+    },
+    {
+     "groupName": "Movies",
+     "member": 89,
+     "creator": "Aisha.Collins6",
+     "createDate": "2021-10-03T21:40:45.066Z",
+     "id": "7"
+    },
+    {
+     "groupName": "Health",
+     "member": 43,
+     "creator": "King38",
+     "createDate": "2021-09-10T18:22:35.532Z",
+     "id": "8"
+    },
+    {
+     "groupName": "Garden",
+     "member": 86,
+     "creator": "Isadore.Rolfson26",
+     "createDate": "2021-12-13T22:19:32.005Z",
+     "id": "9"
+    },
+    {
+     "groupName": "Home",
+     "member": 13,
+     "creator": "Jon.Kirlin",
+     "createDate": "2021-05-10T01:16:48.390Z",
+     "id": "10"
+    }
+   ]

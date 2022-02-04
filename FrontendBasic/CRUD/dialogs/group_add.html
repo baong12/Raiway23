@@ -1,0 +1,14 @@
+<h2 class="w3-text-theme">Add Group</h2>
+<br>
+<!-- <form action="" method="get"> -->
+<form action="javascript:postData();" method="post" autocomplete="off">
+    <p>
+        <label for="grName"><b>Group Name</b></label>
+        <input type="text" id="grName" class="w3-input w3-border" name="grName" required autofocus>
+    </p>
+    <p id="notice" class="w3-text-red"><br></p>
+    <p>
+        <button type="submit" class="w3-button w3-blue save">Save</button>
+        <button onclick="close_modal()" class="w3-button w3-dark-gray cancelbtn">Cancel</button>
+    </p>
+</form>

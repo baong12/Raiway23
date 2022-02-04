@@ -1,0 +1,37 @@
+@import url("w3/w3.css");
+@import url("w3/w3-theme-blue.css");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("fontawesome/css/all.min.css");
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Raleway", sans-serif;
+}
+
+.page {
+    margin-left: 300px;
+    margin-top: 43px;
+}
+
+.welcome {
+    background: url("/images/pattern-background-desktop.svg") no-repeat;
+    background-size: 100%;
+    padding: 199px 0;
+    text-align: center;
+    color: #fcfdfe;
+    font-size: 10vh;
+    text-shadow: 2px 2px 4px #203453;
+    text-align: center;
+}
+
+nav > div {
+    margin: 5px;
+    a {
+        margin-bottom: 5px;
+    }
+}

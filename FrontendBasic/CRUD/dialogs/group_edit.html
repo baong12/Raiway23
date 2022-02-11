@@ -1,12 +1,8 @@
 <h2 class="w3-text-theme">Edit Group</h2>
+<p>Group ID: <span id="curId">(undefined)</span></p>
 <br>
 <!-- <form action="" method="get"> -->
 <form action="javascript:updateData();" method="post" autocomplete="off">
-    <p>Edit group ID: <span id="curId">(undefined)</span></p>
-    <!-- <p>
-        <label for="grId"><b>ID</b></label>
-        <input type="text" id="grId" class="w3-input w3-border" name="grId" required>
-    </p> -->
     <p>
         <label for="grName"><b>Group Name</b></label>
         <input type="text" id="grName" class="w3-input w3-border" name="grName" required>
@@ -17,11 +13,11 @@
     </p>
     <p>
         <label for="creator"><b>Creator</b></label>
-        <input type="text" id="creator" class="w3-input w3-border" name="creator" required>
+        <input type="text" id="creator" class="w3-input w3-border" name="creator" disabled>
     </p>
     <p>
         <label for="createDate"><b>Create Date</b></label>
-        <input type="datetime-local" id="createDate" class="w3-input w3-border" name="createDate" required>
+        <input type="datetime-local" id="createDate" class="w3-input w3-border" name="createDate" disabled>
     </p>
     <p id="notice" class="w3-text-red"><br></p>
     <p>

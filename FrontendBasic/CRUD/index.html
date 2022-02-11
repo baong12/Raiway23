@@ -19,7 +19,7 @@
     </div>
 
     <!-- Sidebar/menu -->
-    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" id="mySidebar"><br>
         <div id="user-info" class="w3-container w3-cell-row">
         </div>
         <hr>
@@ -42,19 +42,20 @@
         title="close side menu" id="myOverlay"></div>
 
     <!-- !PAGE CONTENT! -->
-    <div class="page w3-main">
-        <div id="content">
-        </div>
-
+    <div class="w3-main" id="pageMain">
+        <div id="content"></div>
+        
         <!-- Footer -->
         <footer class="w3-container w3-padding-16 w3-dark-grey">
             <h4>Railway 23 - CRUD Demo</h4>
             <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
         </footer>
     </div>
+
 </body>
 
-<script src="/js/jquery/jquery-3.6.0.min.js"></script>
+<script src="js/jquery/jquery-3.6.0.min.js"></script>
+<script src="js/alertifyjs/alertify.min.js"></script>
 <script src="js/ui_script.js"></script>
 <script src="js/paging_script.js"></script>
 

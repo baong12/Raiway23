@@ -2,6 +2,8 @@
 @import url("w3/w3-theme-blue.css");
 @import url("https://fonts.googleapis.com/css?family=Raleway");
 @import url("fontawesome/css/all.min.css");
+@import url("alertifyjs/alertify.min.css");
+@import url("alertifyjs/themes/bootstrap.min.css");
 
 html,
 body,
@@ -13,15 +15,24 @@ h5 {
     font-family: "Raleway", sans-serif;
 }
 
-.page {
-    margin-left: 300px;
+#pageMain {
+    margin-left: 250px;
     margin-top: 43px;
+}
+
+#mySidebar {
+    z-index: 3;
+    width: 250px;
+}
+
+#content {
+    min-height: 500px;
 }
 
 .welcome {
     background: url("/images/pattern-background-desktop.svg") no-repeat;
     background-size: 100%;
-    padding: 199px 0;
+    padding: 200px 0;
     text-align: center;
     color: #fcfdfe;
     font-size: 10vh;

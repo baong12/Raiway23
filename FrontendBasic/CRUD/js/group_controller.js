@@ -55,8 +55,8 @@ function loadCurGroupData() {
 }
 
 function renderTable(data) {
-    dataTable.innerHTML = "";
-    let content = dataTableHeader;
+    dataTableBody.innerHTML = "";
+    let content = "";
     data.forEach((element) => {
         content += `<tr>
                 <td><input type='checkbox' name='select'></td>
@@ -70,7 +70,7 @@ function renderTable(data) {
                 </td>
             </tr>`;
     });
-    dataTable.innerHTML = content;
+    dataTableBody.innerHTML = content;
 }
 
 function postData() {
@@ -100,6 +100,7 @@ function deleteData() {
         deleteGroup(group.id);
         alertify.success(`Xóa thành công: ${group.groupName}`);
     });
+    document.getElementById("select-all").checked = 0;
     getGroups(renderTable);
 }
 

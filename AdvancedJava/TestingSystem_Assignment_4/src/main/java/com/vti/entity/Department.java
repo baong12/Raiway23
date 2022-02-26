@@ -24,6 +24,9 @@ public class Department implements Serializable {
 
 	@Column(name = "department_name", length = 50, nullable = false, unique = true)
 	private String name;
+	
+	@OneToMany(mappedBy = "department")
+	private List<Account> accounts;
 
 	public Department() {
 	}

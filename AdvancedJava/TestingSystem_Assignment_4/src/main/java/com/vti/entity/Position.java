@@ -38,6 +38,9 @@ public class Position implements Serializable {
 	@Convert(converter = PositionNameConverter.class)
 	private PositionName name;
 
+	@OneToMany(mappedBy = "department")
+	private List<Account> accounts;
+
 	public short getId() {
 		return id;
 	}

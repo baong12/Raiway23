@@ -6,8 +6,12 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import com.vti.entity.Account;
 import com.vti.entity.Department;
+import com.vti.entity.Employee;
 import com.vti.entity.Group;
+import com.vti.entity.Leader;
+import com.vti.entity.Member;
 import com.vti.entity.Position;
 
 public class HibernateUtils {
@@ -34,9 +38,13 @@ public class HibernateUtils {
 		configuration.configure("hibernate.cfg.xml");
 
 		// add entity
+		configuration.addAnnotatedClass(Account.class);
 		configuration.addAnnotatedClass(Department.class);
 		configuration.addAnnotatedClass(Group.class);
 		configuration.addAnnotatedClass(Position.class);
+		configuration.addAnnotatedClass(Employee.class);
+		configuration.addAnnotatedClass(Leader.class);
+		configuration.addAnnotatedClass(Member.class);
 	}
 
 	private SessionFactory buildSessionFactory() {

@@ -1,14 +1,14 @@
 <!-- Header -->
 <header class="w3-container" style="padding-top:22px">
-    <h3><b><i class="fa fa-users fa-fw"></i> Manage Groups</b></h5>
+    <h3><b><i class="fa fa-users fa-fw"></i> Manage Departments</b></h5>
 </header>
 <br>
 
 <div class="w3-container">
     <div class="w3-bar w3-white w3-padding">
-        <form action="javascript:void();">
+        <!-- <form action="javascript:void();">
             <input id="searchBox" class="w3-bar-item w3-border" type="text" name="search" placeholder="Search..">
-        </form>
+        </form> -->
         <!-- Float links to the right. Hide them on small screens -->
         <div class="w3-right w3-hide-small">
             <a id="add" class="w3-bar-item w3-button"><i class="fa fa-plus fa-fw"></i></a>
@@ -23,9 +23,8 @@
         <tr class="w3-theme-d5">
             <th><input id='select-all' onchange="selectAll()" type='checkbox'></th>
             <th>ID</th>
-            <th>Group Name</th>
-            <th>Member</th>
-            <th>Creator</th>
+            <th>Department Name</th>
+            <th>Address</th>
             <th>Create Date</th>
             <th></th>
         </tr>
@@ -43,5 +42,5 @@
     </div>
 </div>
 
-<script src="js/group_service.js"></script>
-<script src="js/group_controller.js"></script>
+<script src="/js/department/department_service.js"></script>
+<script src="/js/department/department_controller.js"></script>

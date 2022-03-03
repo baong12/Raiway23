@@ -5,51 +5,31 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
-import com.vti.entity.Group;
+import com.vti.entity.Department;
 import com.vti.utils.HibernateUtils;
 
-public class GroupRepository {
+@Repository
+public class DepartmentRepository implements IDepartmentRepository {
 
 	private HibernateUtils hibernateUtils;
 
-	public GroupRepository() {
+	public DepartmentRepository() {
 		hibernateUtils = HibernateUtils.getInstance();
 	}
 
-	public void createGroup(Group group) {
-		Session session = null;
-		try {
-			// get session
-			session = hibernateUtils.openSession();
-			session.beginTransaction();
-
-			// create
-			session.save(group);
-			session.getTransaction().commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (session.getTransaction() != null) {
-				session.getTransaction().rollback();
-			}
-		} finally {
-			if (session != null) {
-				session.close();
-			}
-		}
-	}
-	
 	@SuppressWarnings("unchecked")
-	public List<Group> getAllGroups() {
+	public List<Department> getAllDepartments() {
 		Session session = null;
-		List<Group> list = new ArrayList<Group>();
+		List<Department> list = new ArrayList<Department>();
 		try {
 			// get session
 			session = hibernateUtils.openSession();
 			session.beginTransaction();
 
 			// create hql query
-			list = session.createQuery("FROM Group").list();
+			list = session.createQuery("FROM Department").list();
 		} catch (Exception e) {
 			e.printStackTrace();
 			if (session.getTransaction() != null) {
@@ -63,16 +43,16 @@ public class GroupRepository {
 		return list;
 	}
 
-	public Group getGroupByID(short id) {
+	public Department getDepartmentByID(int id) {
 		Session session = null;
-		Group group = null;
+		Department department = null;
 		try {
 			// get session
 			session = hibernateUtils.openSession();
 			session.beginTransaction();
 
 			// get department by id
-			group = session.get(Group.class, id);
+			department = session.get(Department.class, id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			if (session.getTransaction() != null) {
@@ -83,26 +63,26 @@ public class GroupRepository {
 				session.close();
 			}
 		}
-		return group;
+		return department;
 	}
 
 	@SuppressWarnings("unchecked")
-	public Group getGroupByName(String name) {
+	public Department getDepartmentByName(String name) {
 		Session session = null;
-		Group group = null;
+		Department department = null;
 		try {
 			// get session
 			session = hibernateUtils.openSession();
 			session.beginTransaction();
 
 			// create hql query
-			Query<Group> query = session.createQuery("FROM group WHERE group_name = :nameParameter");
+			Query<Department> query = session.createQuery("FROM Department WHERE name = :nameParameter");
 
 			// set parameter
 			query.setParameter("nameParameter", name);
 
 			// get result
-			group = query.uniqueResult();
+			department = query.uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 			if (session.getTransaction() != null) {
@@ -113,10 +93,32 @@ public class GroupRepository {
 				session.close();
 			}
 		}
-		return group;
+		return department;
 	}
 
-	public void updateGroup(short id, String newName) {
+	public void createDepartment(Department department) {
+		Session session = null;
+		try {
+			// get session
+			session = hibernateUtils.openSession();
+			session.beginTransaction();
+
+			// create
+			session.save(department);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
+			}
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+	}
+
+	public void updateDepartment(int id, String newName) {
 		Session session = null;
 		try {
 			// get session
@@ -124,10 +126,10 @@ public class GroupRepository {
 			session.beginTransaction();
 
 			// get department
-			Group group = session.load(Group.class, id);
+			Department department = session.load(Department.class, id);
 
 			// update
-			group.setName(newName);
+			department.setName(newName);
 
 			session.getTransaction().commit();
 		} catch (Exception e) {
@@ -142,7 +144,7 @@ public class GroupRepository {
 		}
 	}
 
-	public void updateGroup(Group group) {
+	public void updateDepartment(Department department) {
 		Session session = null;
 		try {
 			// get session
@@ -150,7 +152,7 @@ public class GroupRepository {
 			session.beginTransaction();
 
 			// update
-			session.update(group);
+			session.update(department);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -164,18 +166,21 @@ public class GroupRepository {
 		}
 	}
 
-	public void deleteGroup(short id) {
+	public void deleteDepartment(int id) {
+
 		Session session = null;
+
 		try {
+
 			// get session
 			session = hibernateUtils.openSession();
 			session.beginTransaction();
 
 			// get department
-			Group group = session.load(Group.class, id);
+			Department department = (Department) session.load(Department.class, id);
 
 			// delete
-			session.delete(group);
+			session.delete(department);
 			session.getTransaction().commit();
 
 		} catch (Exception e) {
@@ -190,22 +195,22 @@ public class GroupRepository {
 		}
 	}
 
-	public boolean isGroupExistsByID(short id) {
+	public boolean isDepartmentExistsByID(int id) {
 		// get department
-		Group group = getGroupByID(id);
+		Department department = getDepartmentByID(id);
 
 		// return result
-		if (group == null) {
+		if (department == null) {
 			return false;
 		}
 
 		return true;
 	}
 
-	public boolean isGroupExistsByName(String name) {
-		Group group = getGroupByName(name);
+	public boolean isDepartmentExistsByName(String name) {
+		Department department = getDepartmentByName(name);
 
-		if (group == null) {
+		if (department == null) {
 			return false;
 		}
 		return true;

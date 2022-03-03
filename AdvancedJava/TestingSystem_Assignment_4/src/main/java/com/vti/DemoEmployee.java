@@ -19,23 +19,23 @@ public class DemoEmployee {
 			System.out.println(item);
 		}
 
-//		System.out.println("\n\n***********GET EMPLOYEE BY ID***********");
-//
-//		Employee employeeById = repository.getEmployeeByID(2);
-//		System.out.println(employeeById);
-//
-//		System.out.println("\n\n***********CREATE EMPLOYEE***********");
-//
-//		Leader leaderCreate = new Leader();
-//		leaderCreate.setEmail("bao.nguyen@gmail.com");
-//		leaderCreate.setFullName("Bao Nguyen");
-//		leaderCreate.setExpInYear(5);
-//		repository.createEmployee(leaderCreate);
-//		
-//		Member memberCreate = new Member();
-//		memberCreate.setEmail("johnny.depp@gmail.com");
-//		memberCreate.setFullName("Johnny Depp");
-//		memberCreate.setSkill("Pirate");
-//		repository.createEmployee(memberCreate);
+		System.out.println("\n\n***********GET EMPLOYEE BY ID***********");
+
+		Employee employeeById = repository.getEmployeeByID(2);
+		System.out.println(employeeById);
+
+		System.out.println("\n\n***********CREATE EMPLOYEE***********");
+
+		Leader leaderCreate = new Leader();
+		leaderCreate.setEmail("bao.nguyen@gmail.com");
+		leaderCreate.setFullName("Bao Nguyen");
+		leaderCreate.setExpInYear(5);
+		repository.createEmployee(leaderCreate);
+		
+		Member memberCreate = new Member();
+		memberCreate.setEmail("johnny.depp@gmail.com");
+		memberCreate.setFullName("Johnny Depp");
+		memberCreate.setSkill("Pirate");
+		repository.createEmployee(memberCreate);
 	}
 }

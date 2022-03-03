@@ -15,32 +15,32 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "`group`")
-public class Group implements Serializable {
+@Table(name = "department")
+public class Department implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "group_id")
+	@Column(name = "department_id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private short id;
+	private int id;
 
-	@Column(name = "group_name", length = 50, nullable = false, unique = true)
+	@Column(name = "department_name", length = 30, nullable = false, unique = true)
 	private String name;
 
+	@Column(name = "address", length = 45)
+	private String address;
+	
 	@Column(name = "create_date")
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
 	private Date createDate;
 
-	public Group() {
-	}
-
-	public short getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(short id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -52,16 +52,19 @@ public class Group implements Serializable {
 		this.name = name;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public Date getCreateDate() {
 		return createDate;
 	}
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
-	}
-
-	@Override
-	public String toString() {
-		return "Group [id=" + id + ", name=" + name + ", createDate=" + createDate + "]";
 	}
 }

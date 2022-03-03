@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    loadPage('pages/manage.html');
-    $("#manage").addClass("w3-blue");
+    loadPage('pages/home.html');
+    $("#home").addClass("w3-blue");
     loadUser();
 });
 

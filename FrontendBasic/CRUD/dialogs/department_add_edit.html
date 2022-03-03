@@ -1,0 +1,24 @@
+<h2 id="dialogTitle" class="w3-text-theme">(undefined)</h2>
+<p id="idLabel">Department ID: <span id="depId">(undefined)</span></p>
+<br>
+<!-- <form action="" method="get"> -->
+<form action="javascript:void();" autocomplete="off">
+    <p>
+        <label for="depName"><b>Department Name</b></label>
+        <input type="text" id="depName" class="w3-input w3-border" name="depName" required>
+    </p>
+    <p>
+        <label for="depAddress"><b>Address</b></label>
+        <input type="text" id="depAddress" class="w3-input w3-border" name="depAddress" required>
+    </p>
+    <p>
+        <label for="depCreateDate"><b>Create Date</b></label>
+        <input type="datetime-local" id="depCreateDate" class="w3-input w3-border" name="depCreateDate" disabled>
+    </p>
+    <p id="notice" class="w3-text-red"><br></p>
+    <p>
+        <button id="depPostBtn" type="button" onclick="postData()" class="w3-button w3-blue save">Save</button>
+        <button id="depUpdateBtn" type="button" onclick="updateData()" class="w3-button w3-blue save">Save</button>
+        <button type="button" onclick="close_modal()" class="w3-button w3-white cancelbtn">Cancel</button>
+    </p>
+</form>

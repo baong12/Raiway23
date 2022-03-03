@@ -1,41 +1,39 @@
 package com.vti.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "department")
+@Table(name = "department_hql")
 public class Department implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "department_id")
+	@Column(name = "id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private short id;
+	private Integer id;
 
-	@Column(name = "department_name", length = 50, nullable = false, unique = true)
+	@Column(name = "name", length = 45, nullable = false, unique = true)
 	private String name;
 	
-	@OneToMany(mappedBy = "department")
-	private List<Account> accounts;
+	@Column(name = "address", length = 45, nullable = false)
+	private String address;
+	
+	@Column(name = "emulation_points")
+	private Integer emulationPoints;
 
-	public Department() {
-	}
-
-	public short getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(short id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -47,8 +45,19 @@ public class Department implements Serializable {
 		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		return "Department [id=" + id + ", name=" + name + "]";
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Integer getEmulationPoints() {
+		return emulationPoints;
+	}
+
+	public void setEmulationPoints(Integer emulationPoints) {
+		this.emulationPoints = emulationPoints;
 	}
 }

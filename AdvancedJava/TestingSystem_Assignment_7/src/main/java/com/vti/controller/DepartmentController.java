@@ -24,17 +24,17 @@ public class DepartmentController {
 	@Autowired
 	private IDepartmentService service;
 
-//	@GetMapping()
-//	public Page<Department> getAllDepartments(Pageable pageable) {
-//		return service.getAllDepartments(pageable);
-//	}
+	@GetMapping()
+	public Page<Department> getAllDepartments(Pageable pageable) {
+		return service.getAllDepartments(pageable);
+	}
 
 	@GetMapping(value = "/{id}")
 	public Department getDepartmentByID(@PathVariable(name = "id") int id) {
 		return service.getDepartmentByID(id);
 	}
 
-	@GetMapping()
+	@GetMapping("/name")
 	public Page<Department> getDepartmentByName(
 			@RequestParam(name = "name", required = false) String name,
 			Pageable pageable) {
@@ -42,7 +42,7 @@ public class DepartmentController {
 		return service.getDepartmentByName(name, pageable);
 	}
 	
-	@GetMapping("/exists")
+	@GetMapping("/exist")
 	public boolean isDepartmentExistsByName(@RequestParam(name = "name") String name) {
 		return service.isDepartmentExistsByName(name);
 	}
@@ -55,7 +55,7 @@ public class DepartmentController {
 	@PutMapping(value = "/{id}")
 	public void updateDepartment(@PathVariable(name = "id") Integer id, @RequestBody DepartmentForm form) {
 		Department department = form.toEntity();
-		department.setId(id);
+		department.setId(id.shortValue());
 		service.updateDepartment(department);
 	}
 

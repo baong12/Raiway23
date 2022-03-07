@@ -43,8 +43,8 @@ public class DepartmentService implements IDepartmentService {
 	}
 
 	public void updateDepartment(Integer id, String newName) {
-		Department department = new Department(newName, (short) 0);
-		department.setId(id);
+		Department department = new Department(newName);
+		department.setId(id.shortValue());
 		repository.save(department);
 	}
 
